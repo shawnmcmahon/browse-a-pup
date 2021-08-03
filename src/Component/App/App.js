@@ -1,15 +1,26 @@
-import React from 'react';
+import React, { Component } from 'react';
+import War from '../War/War';
 import './App.css';
 
-const App = () => {
+class App extends Component {
+  constructor() {
+    super() 
+      this.state = {
+        allDogs: []
+      }
+  }
+  render() {
+    return (
+      <div className="App">
+        <header className="App-header">
+        <h2> Doggo Wars</h2>
+        </header>
+        <h3> War </h3>
+        <War />
 
-  return (
-    <div className="App">
-      <header className="App-header">
-      //Game Component
-      </header>
-    </div>
-  );
+      </div>
+    );
+  }
 }
 
 export default App;
