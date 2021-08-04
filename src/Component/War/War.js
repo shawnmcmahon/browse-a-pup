@@ -17,6 +17,7 @@ class War extends Component {
       .then(response => response.json())
       .then(data => {
         this.setState({allDogs: data.message})
+        this.createDogObjects();
         this.assignDogsOneAndTwo();
 
         // this.setState({dogOne: this.state.allDogs[0]})
@@ -26,6 +27,26 @@ class War extends Component {
 
     
     // this.assignDogsOneAndTwo();
+  }
+
+  createDogObjects = () => {
+    if (this.state.allDogs.length > 0) {
+      // console.log('all dogs state', this.state.allDogs)
+      const dogObjects = this.state.allDogs.map(currentDog => {
+        let dog = {
+          image: currentDog, 
+          breed: '',
+          isLoved: false, 
+          roundsWon: 0, 
+          percentageWon: 0, 
+          bestStreak: 0
+        }
+        return dog;
+      })
+      this.setState({allDogs: dogObjects})
+      return dogObjects;
+    }
+
   }
 
   mapDogs = () => {
@@ -39,7 +60,6 @@ class War extends Component {
       })
       
     
-    console.log('past dogs', mappedPastDogs)
     return mappedPastDogs;
   }
 }
@@ -71,13 +91,13 @@ class War extends Component {
       <div>
         <h4> Doggo 1</h4>
         <article className="dog-container">
-          <img className="dog" alt="dog one" src={this.state.dogOne} />
+          <img className="dog" alt="dog one" src={this.state.dogOne.image} />
           <button onClick={(event) => this.handleClickOne(event)}>Keep</button>
           <button>Love</button>
         </article>
         <h4> Doggo 2</h4>
         <article className="dog-container">
-          <img className="dog" alt="dog two" src={this.state.dogTwo} />
+          <img className="dog" alt="dog two" src={this.state.dogTwo.image} />
           <button onClick={(event) => this.handleClickTwo(event)}>Keep</button>
           <button>Love</button>
         </article>
