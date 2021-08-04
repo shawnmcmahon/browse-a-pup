@@ -30,8 +30,7 @@ class War extends Component {
   }
 
   createDogObjects = () => {
-    if (this.state.allDogs.length > 0) {
-      // console.log('all dogs state', this.state.allDogs)
+    
       const dogObjects = this.state.allDogs.map(currentDog => {
         let dog = {
           image: currentDog, 
@@ -45,7 +44,7 @@ class War extends Component {
       })
       this.setState({allDogs: dogObjects})
       return dogObjects;
-    }
+    
 
   }
 
@@ -85,6 +84,30 @@ class War extends Component {
     this.setState({dogOne: this.state.allDogs[1]});
   }
 
+  handleLoveOne = () => {
+    const pastState = [...this.state.allDogs]
+    if (!pastState[0].isLoved) {
+      pastState[0].isLoved = true;
+      this.setState({pastState})
+    } else {
+      pastState[0].isLoved = false;
+      this.setState({pastState})
+    }
+  }
+
+  handleLoveTwo = () => {
+    const pastState = [...this.state.allDogs]
+    if (!pastState[1].isLoved) {
+      pastState[1].isLoved = true;
+      this.setState({pastState})
+    } else {
+      pastState[1].isLoved = false;
+      this.setState({pastState})
+    }
+  }
+
+  
+
   
   render() {
     return (
@@ -93,13 +116,13 @@ class War extends Component {
         <article className="dog-container">
           <img className="dog" alt="dog one" src={this.state.dogOne.image} />
           <button onClick={(event) => this.handleClickOne(event)}>Keep</button>
-          <button>Love</button>
+          <button onClick={(event) => this.handleLoveOne(event)}>Love</button>
         </article>
         <h4> Doggo 2</h4>
         <article className="dog-container">
           <img className="dog" alt="dog two" src={this.state.dogTwo.image} />
           <button onClick={(event) => this.handleClickTwo(event)}>Keep</button>
-          <button>Love</button>
+          <button onClick={(event) => this.handleLoveTwo(event)}>Love</button>
         </article>
         <article className="dog-container">
           <h2>Past Doggos</h2>
