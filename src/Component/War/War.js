@@ -42,6 +42,7 @@ class War extends Component {
     this.setState({dogTwo: this.state.allDogs[1]});
   }
 
+  
   handleClickTwo = (event) => {
     event.preventDefault();
     this.setState({pastDogs: [...this.state.pastDogs, this.state.dogOne] });
