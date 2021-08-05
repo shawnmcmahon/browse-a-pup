@@ -125,26 +125,48 @@ class War extends Component {
   }
 
   handleLoveOne = () => {
-    const pastState = [...this.state.allDogs]
-    if (!pastState[0].isLoved) {
-      pastState[0].isLoved = true;
-      this.setState({pastState})
+    const dogOne = this.state.dogOne
+    if (!dogOne.isLoved) {
+      dogOne.isLoved = true;
+      this.setState({dogOne: dogOne})
     } else {
-      pastState[0].isLoved = false;
-      this.setState({pastState})
+      dogOne.isLoved = false;
+      this.setState({dogOne: dogOne})
     }
   }
 
   handleLoveTwo = () => {
-    const pastState = [...this.state.allDogs]
-    if (!pastState[1].isLoved) {
-      pastState[1].isLoved = true;
-      this.setState({pastState})
+    const dogTwo = this.state.dogTwo
+    if (!dogTwo.isLoved) {
+      dogTwo.isLoved = true;
+      this.setState({dogTwo: dogTwo})
     } else {
-      pastState[1].isLoved = false;
-      this.setState({pastState})
+      dogTwo.isLoved = false;
+      this.setState({dogTwo: dogTwo})
     }
   }
+
+  // handleLoveOne = () => {
+  //   const pastState = [...this.state.allDogs]
+  //   if (!pastState[0].isLoved) {
+  //     pastState[0].isLoved = true;
+  //     this.setState({pastState})
+  //   } else {
+  //     pastState[0].isLoved = false;
+  //     this.setState({pastState})
+  //   }
+  // }
+
+  // handleLoveTwo = () => {
+  //   const pastState = [...this.state.allDogs]
+  //   if (!pastState[1].isLoved) {
+  //     pastState[1].isLoved = true;
+  //     this.setState({pastState})
+  //   } else {
+  //     pastState[1].isLoved = false;
+  //     this.setState({pastState})
+  //   }
+  // }
 
   
 
@@ -157,6 +179,7 @@ class War extends Component {
           render={() => {
             return (
               <div>
+                <NavLink exact to="/"><button className="nav-button">Home</button></NavLink>
                 <NavLink exact to="/past-dogs"><button className="nav-button">Past Dogs</button></NavLink>
                 <NavLink exact to="/loved-dogs"><button className="nav-button">Loved Dogs</button></NavLink>
                 <h4> Doggo 1</h4>
@@ -194,7 +217,7 @@ class War extends Component {
                 <article className="dog-container">
                   <h2>Past Doggos</h2>
                   {/* {this.mapDogs()} */}
-                  <LovedDogs pastDogs={this.state.pastDogs} />
+                  <LovedDogs pastDogs={this.state.pastDogs} dogOne={this.state.dogOne} dogTwo={this.state.dogTwo}/>
                 </article>
               )
             }}
