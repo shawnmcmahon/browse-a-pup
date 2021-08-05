@@ -39,7 +39,7 @@ class War extends Component {
           isLoved: false, 
           roundsWon: 0, 
           roundTotal: 0,
-          percentageWon: currentDog.roundsWon / currentDog.roundTotal, 
+          percentageWon: 0, 
           bestStreak: 0
         }
         return dog;
@@ -84,11 +84,11 @@ class War extends Component {
 
     firstDog.roundsWon++;
     firstDog.roundTotal++;
+    firstDog.percentageWon = Math.floor((firstDog.roundsWon / firstDog.roundTotal * 100));
     secondDog.roundTotal++;
-    this.setState({dogOne: firstDog})
-    this.setState({pastDogs: [...this.state.pastDogs, secondDog]})
+    secondDog.percentageWon = secondDog.roundsWon / secondDog.roundTotal;
+    this.setState({dogOne: firstDog, dogTwo: this.state.allDogs[1], pastDogs: [...this.state.pastDogs, secondDog]});
     this.state.allDogs.splice(1, 1);
-    this.setState({dogTwo: this.state.allDogs[1]})
 
   }
 
@@ -100,11 +100,16 @@ class War extends Component {
 
     secondDog.roundsWon++;
     secondDog.roundTotal++;
+    secondDog.percentageWon = Math.floor((secondDog.roundsWon / secondDog.roundTotal * 100));
     firstDog.roundTotal++;
-    this.setState({dogTwo: secondDog})
-    this.setState({pastDogs: [...this.state.pastDogs, firstDog]})
+    firstDog.percentageWon = firstDog.roundsWon / firstDog.roundTotal;
+    this.setState({dogOne: this.state.allDogs[0], dogTwo: secondDog, pastDogs: [...this.state.pastDogs, firstDog]});
     this.state.allDogs.splice(0, 1);
-    this.setState({dogOne: this.state.allDogs[0]})
+
+    // this.setState({dogTwo: secondDog})
+    // this.setState({pastDogs: [...this.state.pastDogs, firstDog]})
+    // this.state.allDogs.splice(0, 1);
+    // this.setState({dogOne: this.state.allDogs[0]})
 
   }
 
