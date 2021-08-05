@@ -147,6 +147,7 @@ class War extends Component {
           render={() => {
             return (
               <div>
+                <NavLink exact to="/past-dogs"><button className="nav-button">Past Dogs</button></NavLink>
                 <h4> Doggo 1</h4>
                 <article className="dog-container">
                   <Dog className="dog" alt="dog one" image={this.state.dogOne.image} />
@@ -171,13 +172,13 @@ class War extends Component {
                 <article className="dog-container">
                   <h2>Past Doggos</h2>
                   {/* {this.mapDogs()} */}
-                </article>
                   <PastDogs pastDogs={this.state.pastDogs} />
-            </div>
+                </article>
+              </div>
             )
           }}
-          />
-      </Switch>      
+          /> 
+      </Switch> 
     )
   }
 }

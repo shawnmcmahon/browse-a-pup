@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import War from '../War/War';
+import { Route, Switch, Redirect, NavLink } from 'react-router-dom';
 import './App.css';
 
 class App extends Component {
