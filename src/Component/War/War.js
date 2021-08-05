@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import PastDogs from '../PastDogs/PastDogs'
+import Dog from '../Dog/Dog';
+import { Route, Switch, Redirect, NavLink } from 'react-router-dom';
 import './War.css'
 
 class War extends Component {
@@ -35,12 +38,10 @@ class War extends Component {
         let dog = {
           image: currentDog, 
           key: currentDog,
-          breed: '',
           isLoved: false, 
           roundsWon: 0, 
           roundTotal: 0,
           percentageWon: 0, 
-          bestStreak: 0
         }
         return dog;
       })
@@ -50,20 +51,20 @@ class War extends Component {
 
   }
 
-  mapDogs = () => {
-    if (this.state.pastDogs) {
-      const mappedPastDogs = this.state.pastDogs.map(currentDog => {
-        return (
-          <div>
-            <img className="dog" alt="past dog" src={currentDog.image}/>
-          </div>
-        )
-      })
+//   mapDogs = () => {
+//     if (this.state.pastDogs) {
+//       const mappedPastDogs = this.state.pastDogs.map(currentDog => {
+//         return (
+//           <div>
+//             <img className="dog" alt="past dog" src={currentDog.image}/>
+//           </div>
+//         )
+//       })
       
     
-    return mappedPastDogs;
-  }
-}
+//     return mappedPastDogs;
+//   }
+// }
 
   
   assignDogsOneAndTwo= () => {
@@ -143,19 +144,20 @@ class War extends Component {
       <div>
         <h4> Doggo 1</h4>
         <article className="dog-container">
-          <img className="dog" alt="dog one" src={this.state.dogOne.image} />
+          <Dog className="dog" alt="dog one" image={this.state.dogOne.image} />
           <button onClick={(event) => this.handleClickOne(event)}>Keep</button>
           <button onClick={(event) => this.handleLoveOne(event)}>Love</button>
         </article>
         <h4> Doggo 2</h4>
         <article className="dog-container">
-          <img className="dog" alt="dog two" src={this.state.dogTwo.image} />
+          <Dog className="dog" alt="dog two" image={this.state.dogTwo.image} />
           <button onClick={(event) => this.handleClickTwo(event)}>Keep</button>
           <button onClick={(event) => this.handleLoveTwo(event)}>Love</button>
         </article>
         <article className="dog-container">
           <h2>Past Doggos</h2>
-          {this.mapDogs()}
+          {/* {this.mapDogs()} */}
+          <PastDogs pastDogs={this.state.pastDogs} />
         </article>
       </div>
         
