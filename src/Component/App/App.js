@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import War from '../War/War';
-import { Route, Switch, Redirect, NavLink } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 import './App.css';
 
 class App extends Component {
@@ -25,14 +25,15 @@ class App extends Component {
   
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-        <h2> Doggo Wars</h2>
-        </header>
-        <h3> War </h3>
-        <War allDogs={this.state.allDogs}/>
-
-      </div>
+      <BrowserRouter>
+        <div className="App">
+          <header className="App-header">
+          <h2> Doggo Wars</h2>
+          </header>
+          <h3> War </h3>
+          <War allDogs={this.state.allDogs}/>
+        </div>
+      </BrowserRouter>
     );
   }
 }

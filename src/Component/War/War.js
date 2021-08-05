@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import PastDogs from '../PastDogs/PastDogs'
+import PastDogs from '../PastDogs/PastDogs';
+import LovedDogs from '../LovedDogs/LovedDogs';
 import Dog from '../Dog/Dog';
-import { Route, Switch, Redirect, NavLink } from 'react-router-dom';
-import './War.css'
+import {BrowserRouter, Route, Switch, Redirect, NavLink } from 'react-router-dom';
+import './War.css';
 
 class War extends Component {
   constructor(props) {
@@ -23,14 +24,9 @@ class War extends Component {
         this.createDogObjects();
         this.assignBreed();
         this.assignDogsOneAndTwo();
-
-        // this.setState({dogOne: this.state.allDogs[0]})
-        // this.setState({dogTwo: this.state.allDogs[1]})
-        // console.log(this.state.allDogs)
       })
 
     
-    // this.assignDogsOneAndTwo();
   }
 
   createDogObjects = () => {
@@ -77,6 +73,7 @@ class War extends Component {
       currentDog.breed = breed;
       return currentDog;
     })
+    return allDogsWithBreeds;
   }
 
   
@@ -154,13 +151,14 @@ class War extends Component {
   
   render() {
     return (
-      // <Switch>
-      //   <Route 
-      //     exact path ='/'
-      //     render={() => {
-            // return (
+      <Switch>
+        <Route 
+          exact path ='/'
+          render={() => {
+            return (
               <div>
-                {/* <NavLink exact to="/past-dogs"><button className="nav-button">Past Dogs</button></NavLink> */}
+                <NavLink exact to="/past-dogs"><button className="nav-button">Past Dogs</button></NavLink>
+                <NavLink exact to="/loved-dogs"><button className="nav-button">Loved Dogs</button></NavLink>
                 <h4> Doggo 1</h4>
                 <article className="dog-container">
                   <Dog className="dog" alt="dog one" image={this.state.dogOne.image} />
@@ -173,25 +171,38 @@ class War extends Component {
                   <button onClick={(event) => this.handleClickTwo(event)}>Keep</button>
                   <button onClick={(event) => this.handleLoveTwo(event)}>Love</button>
                 </article>
-            {/* //   )   
-            // }}
-          // /> */}
-        {/* // <Route  */}
-        {/* //   exact path='/past-dogs' 
-        //   render={() => { */}
+              </div>
+            )   
+            }}
+          />
+        <Route 
+          exact path='/past-dogs' 
+          render={() => {
+              return(
                 <article className="dog-container">
                   <h2>Past Doggos</h2>
                   {/* {this.mapDogs()} */}
-                  <PastDogs pastDogs={this.state.pastDogs} />
+                  <PastDogs pastDogs={this.state.pastDogs} isOnlyLoved="false"/>
                 </article>
-
-                </div>
-            // )
-  //         }}
-  //         /> 
-  //     </Switch> 
+              )
+            }}
+            / > 
+        <Route 
+          exact path='/loved-dogs' 
+          render={() => {
+              return(
+                <article className="dog-container">
+                  <h2>Past Doggos</h2>
+                  {/* {this.mapDogs()} */}
+                  <LovedDogs pastDogs={this.state.pastDogs} />
+                </article>
+              )
+            }}
+            / > 
+        </Switch> 
     )
   }
 }
+
 
 export default War;
