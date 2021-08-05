@@ -15,9 +15,6 @@ const PastDogs = ({pastDogs, isOnlyLoved}) => {
   
   return (
     <section>
-      <NavLink exact to="/"><button className="nav-button">Home</button></NavLink>
-      <NavLink exact to="/past-dogs"><button className="nav-button">Past Dogs</button></NavLink>
-      <NavLink exact to="/loved-dogs"><button className="nav-button">Loved Dogs</button></NavLink>
       {mappedPastDogs}
     </section>
   )

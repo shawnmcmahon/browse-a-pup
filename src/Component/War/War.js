@@ -179,9 +179,6 @@ class War extends Component {
           render={() => {
             return (
               <div>
-                <NavLink exact to="/"><button className="nav-button">Home</button></NavLink>
-                <NavLink exact to="/past-dogs"><button className="nav-button">Past Dogs</button></NavLink>
-                <NavLink exact to="/loved-dogs"><button className="nav-button">Loved Dogs</button></NavLink>
                 <h4> Doggo 1</h4>
                 <article className="dog-container">
                   <Dog className="dog" alt="dog one" image={this.state.dogOne.image} />
