@@ -6,8 +6,8 @@ class War extends Component {
     super(props) 
       this.state = {
         allDogs: [],
-        dogOne: '',
-        dogTwo: '',
+        dogOne: [],
+        dogTwo: [],
         pastDogs: [] 
       }
   }
@@ -34,10 +34,12 @@ class War extends Component {
       const dogObjects = this.state.allDogs.map(currentDog => {
         let dog = {
           image: currentDog, 
+          key: currentDog,
           breed: '',
           isLoved: false, 
           roundsWon: 0, 
-          percentageWon: 0, 
+          roundTotal: 0,
+          percentageWon: currentDog.roundsWon / currentDog.roundTotal, 
           bestStreak: 0
         }
         return dog;
@@ -53,7 +55,7 @@ class War extends Component {
       const mappedPastDogs = this.state.pastDogs.map(currentDog => {
         return (
           <div>
-            <img className="dog" alt="past dog" src={currentDog}/>
+            <img className="dog" alt="past dog" src={currentDog.image}/>
           </div>
         )
       })
@@ -65,23 +67,45 @@ class War extends Component {
 
   
   assignDogsOneAndTwo= () => {
+
     this.setState({dogOne: this.state.allDogs[0]})
     this.setState({dogTwo: this.state.allDogs[1]})
+    this.state.allDogs.splice(1, 2);
+
   }
 
   handleClickOne = (event) => {
     event.preventDefault();
-    this.setState({pastDogs: [...this.state.pastDogs, this.state.dogTwo] });
+    const firstDog = this.state.dogOne
+    const secondDog = this.state.dogTwo
+    console.log('first dog', firstDog)
+    console.log('second dog', secondDog)
+
+
+    firstDog.roundsWon++;
+    firstDog.roundTotal++;
+    secondDog.roundTotal++;
+    this.setState({dogOne: firstDog})
+    this.setState({pastDogs: [...this.state.pastDogs, secondDog]})
     this.state.allDogs.splice(1, 1);
-    this.setState({dogTwo: this.state.allDogs[1]});
+    this.setState({dogTwo: this.state.allDogs[1]})
+
   }
 
 
   handleClickTwo = (event) => {
     event.preventDefault();
-    this.setState({pastDogs: [...this.state.pastDogs, this.state.dogOne] });
-    this.state.allDogs.splice(0, 1); 
-    this.setState({dogOne: this.state.allDogs[1]});
+    const firstDog = this.state.dogOne
+    const secondDog = this.state.dogTwo
+
+    secondDog.roundsWon++;
+    secondDog.roundTotal++;
+    firstDog.roundTotal++;
+    this.setState({dogTwo: secondDog})
+    this.setState({pastDogs: [...this.state.pastDogs, firstDog]})
+    this.state.allDogs.splice(0, 1);
+    this.setState({dogOne: this.state.allDogs[0]})
+
   }
 
   handleLoveOne = () => {
