@@ -21,6 +21,7 @@ class War extends Component {
       .then(data => {
         this.setState({allDogs: data.message})
         this.createDogObjects();
+        this.assignBreed();
         this.assignDogsOneAndTwo();
 
         // this.setState({dogOne: this.state.allDogs[0]})
@@ -33,7 +34,6 @@ class War extends Component {
   }
 
   createDogObjects = () => {
-    
       const dogObjects = this.state.allDogs.map(currentDog => {
         let dog = {
           image: currentDog, 
@@ -41,14 +41,13 @@ class War extends Component {
           isLoved: false, 
           roundsWon: 0, 
           roundTotal: 0,
-          percentageWon: 0, 
+          percentageWon: 0,
+          breed: '', 
         }
         return dog;
       })
       this.setState({allDogs: dogObjects})
       return dogObjects;
-    
-
   }
 
 //   mapDogs = () => {
@@ -65,6 +64,20 @@ class War extends Component {
 //     return mappedPastDogs;
 //   }
 // }
+
+  assignBreed = () => {
+    const allDogs = this.state.allDogs; 
+    // console.log('all dogs image', allDogs[0].image.split('/'))
+    const allDogsWithBreeds = allDogs.map(currentDog => {
+      let breed = currentDog.image.split('/')[4]
+      if (breed.includes('-')) { 
+        breed  = breed.split('-').join(' ')
+
+      }
+      currentDog.breed = breed;
+      return currentDog;
+    })
+  }
 
   
   assignDogsOneAndTwo= () => {
@@ -141,13 +154,13 @@ class War extends Component {
   
   render() {
     return (
-      <Switch>
-        <Route 
-          exact path ='/'
-          render={() => {
-            return (
+      // <Switch>
+      //   <Route 
+      //     exact path ='/'
+      //     render={() => {
+            // return (
               <div>
-                <NavLink exact to="/past-dogs"><button className="nav-button">Past Dogs</button></NavLink>
+                {/* <NavLink exact to="/past-dogs"><button className="nav-button">Past Dogs</button></NavLink> */}
                 <h4> Doggo 1</h4>
                 <article className="dog-container">
                   <Dog className="dog" alt="dog one" image={this.state.dogOne.image} />
@@ -160,25 +173,23 @@ class War extends Component {
                   <button onClick={(event) => this.handleClickTwo(event)}>Keep</button>
                   <button onClick={(event) => this.handleLoveTwo(event)}>Love</button>
                 </article>
-              </div>
-              )   
-            }}
-          />
-        <Route 
-          exact path='/past-dogs' 
-          render={() => {
-            return (
-              <div>
+            {/* //   )   
+            // }}
+          // /> */}
+        {/* // <Route  */}
+        {/* //   exact path='/past-dogs' 
+        //   render={() => { */}
                 <article className="dog-container">
                   <h2>Past Doggos</h2>
                   {/* {this.mapDogs()} */}
                   <PastDogs pastDogs={this.state.pastDogs} />
                 </article>
-              </div>
-            )
-          }}
-          /> 
-      </Switch> 
+
+                </div>
+            // )
+  //         }}
+  //         /> 
+  //     </Switch> 
     )
   }
 }
