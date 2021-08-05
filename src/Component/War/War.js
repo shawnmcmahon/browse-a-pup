@@ -141,29 +141,45 @@ class War extends Component {
   
   render() {
     return (
-      <div>
-        <h4> Doggo 1</h4>
-        <article className="dog-container">
-          <Dog className="dog" alt="dog one" image={this.state.dogOne.image} />
-          <button onClick={(event) => this.handleClickOne(event)}>Keep</button>
-          <button onClick={(event) => this.handleLoveOne(event)}>Love</button>
-        </article>
-        <h4> Doggo 2</h4>
-        <article className="dog-container">
-          <Dog className="dog" alt="dog two" image={this.state.dogTwo.image} />
-          <button onClick={(event) => this.handleClickTwo(event)}>Keep</button>
-          <button onClick={(event) => this.handleLoveTwo(event)}>Love</button>
-        </article>
-        <article className="dog-container">
-          <h2>Past Doggos</h2>
-          {/* {this.mapDogs()} */}
-          <PastDogs pastDogs={this.state.pastDogs} />
-        </article>
-      </div>
-        
+      <Switch>
+        <Route 
+          exact path ='/'
+          render={() => {
+            return (
+              <div>
+                <h4> Doggo 1</h4>
+                <article className="dog-container">
+                  <Dog className="dog" alt="dog one" image={this.state.dogOne.image} />
+                  <button onClick={(event) => this.handleClickOne(event)}>Keep</button>
+                  <button onClick={(event) => this.handleLoveOne(event)}>Love</button>
+                </article>
+                <h4> Doggo 2</h4>
+                <article className="dog-container">
+                  <Dog className="dog" alt="dog two" image={this.state.dogTwo.image} />
+                  <button onClick={(event) => this.handleClickTwo(event)}>Keep</button>
+                  <button onClick={(event) => this.handleLoveTwo(event)}>Love</button>
+                </article>
+              </div>
+              )   
+            }}
+          />
+        <Route 
+          exact path='/past-dogs' 
+          render={() => {
+            return (
+              <div>
+                <article className="dog-container">
+                  <h2>Past Doggos</h2>
+                  {/* {this.mapDogs()} */}
+                </article>
+                  <PastDogs pastDogs={this.state.pastDogs} />
+            </div>
+            )
+          }}
+          />
+      </Switch>      
     )
   }
-
 }
 
 export default War;
