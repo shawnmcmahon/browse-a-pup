@@ -17,7 +17,7 @@ const LovedDogs = ({pastDogs, dogOne, dogTwo}) => {
       console.log('all Dogs', allDogs)
       console.log('allLovedDogs', allLovedDogs)
       return (
-          <Dog image={currentDog.image} key={currentDog.image} />
+          <Dog dog={currentDog} key={currentDog.image} />
       )
   })
 

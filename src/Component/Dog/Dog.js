@@ -2,6 +2,7 @@ import React from 'react';
 import './Dog.css';
 
 const Dog = ({dog, handleLoveClick}) => {
+  console.log('dog', dog.image)
 
   // const handleLove = (event) => {
   //   // const dogOne = this.state.dogOne

@@ -3,12 +3,12 @@ import Dog from '../Dog/Dog'
 import './PastDogs.css'
 import { NavLink } from 'react-router-dom';
 
-const PastDogs = ({pastDogs, isOnlyLoved}) => {
+const PastDogs = ({pastDogs, isOnlyLoved, handleLoveClick}) => {
 
 
   const mappedPastDogs = pastDogs.map(currentDog => {
     return (
-        <Dog image={currentDog.image} />
+        <Dog dog={currentDog} handleLoveClick={handleLoveClick} />
     )
   })
 

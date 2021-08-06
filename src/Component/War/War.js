@@ -227,7 +227,7 @@ class War extends Component {
                 <article className="dog-container">
                   <h2>Past Doggos</h2>
                   {/* {this.mapDogs()} */}
-                  <PastDogs pastDogs={this.state.pastDogs} isOnlyLoved="false"/>
+                  <PastDogs pastDogs={this.state.pastDogs} isOnlyLoved="false" handleLoveClick={this.handleLoveClick}/>
                 </article>
               )
             }}
