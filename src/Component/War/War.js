@@ -18,12 +18,15 @@ class War extends Component {
 
   componentDidMount() {
     fetch('https://dog.ceo/api/breeds/image/random/50')
+      // .then(response => console.log(response))
       .then(response => response.json())
       .then(data => {
         this.setState({allDogs: data.message})
+        console.log(data)
         this.createDogObjects();
         this.assignBreed();
         this.assignDogsOneAndTwo();
+        // console.log(JSON.parse(data))
       })
 
     
@@ -206,13 +209,13 @@ class War extends Component {
               <div>
                 <h4> Doggo 1</h4>
                 <article className="dog-container">
-                  <Dog className="dog" alt="dog one" dog={this.state.dogOne} handleLoveClick={this.handleLoveClick}/>
+                  <Dog className="dog one" id="dogOne" data-cy="dogOne" alt="dog one" dog={this.state.dogOne} handleLoveClick={this.handleLoveClick}/>
                   <button onClick={(event) => this.handleClickOne(event)}>Keep</button>
                   {/* <button onClick={(event) => this.handleLoveOne(event)}>Love</button> */}
                 </article>
                 <h4> Doggo 2</h4>
                 <article className="dog-container">
-                <Dog className="dog" alt="dog two" dog={this.state.dogTwo} handleLoveClick={this.handleLoveClick}/>
+                <Dog className="dog two" id="dogTwo" data-cy="dogTwo" alt="dog two" dog={this.state.dogTwo} handleLoveClick={this.handleLoveClick}/>
                   <button onClick={(event) => this.handleClickTwo(event)}>Keep</button>
                   {/* <button onClick={(event) => this.handleLoveTwo(event)}>Love</button> */}
                 </article>
