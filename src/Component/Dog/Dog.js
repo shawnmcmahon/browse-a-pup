@@ -20,7 +20,7 @@ const Dog = ({dog, handleLoveClick}) => {
     <article>
       <img src={dog.image} 
       className="dog" alt="past dog" />
-      <button onClick={(event) => handleLoveClick(event, dog)}>Love</button>
+      <button className="love-button" onClick={(event) => handleLoveClick(event, dog)}></button>
     </article>
   )
 }

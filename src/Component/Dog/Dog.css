@@ -1,0 +1,17 @@
+.love-button {
+  background-image: url('../../assets/heart_border_black.png');
+  background-color: transparent;
+  width: 50px;
+  height: 50px;
+  border: none;
+  border-top-left-radius: 25px;
+}
+
+.dog-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: auto;
+  height: auto;
+}
+
