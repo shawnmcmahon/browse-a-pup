@@ -3,9 +3,9 @@ import PastDogs from '../PastDogs/PastDogs';
 import LovedDogs from '../LovedDogs/LovedDogs';
 import Dog from '../Dog/Dog';
 import {BrowserRouter, Route, Switch, Redirect, NavLink } from 'react-router-dom';
-import './War.css';
+import './Adopt.css';
 
-class War extends Component {
+class Adopt extends Component {
   constructor(props) {
     super(props) 
       this.state = {
@@ -251,4 +251,4 @@ class War extends Component {
 }
 
 
-export default War;
+export default Adopt;
