@@ -79,10 +79,10 @@ class War extends Component {
   
   assignDogsOneAndTwo= () => {
 
-    this.setState({dogOne: this.state.allDogs[0]})
-    this.setState({dogTwo: this.state.allDogs[1]})
-    this.setState({pastDogs: [this.state.dogOne, this.state.dogTwo]})
+    this.setState({pastDogs: [this.state.allDogs[0], this.state.allDogs[1]]})
     this.state.allDogs.splice(1, 2);
+    this.setState({dogOne: this.state.pastDogs[0]})
+    this.setState({dogTwo: this.state.pastDogs[1]})
 
   }
 
@@ -141,10 +141,24 @@ class War extends Component {
   }
 
   handleLoveClick = (event, dog) => {
-    console.log('dog', dog)
-    console.log('state dog one', this.state.dogOne)
+    const allPastDogs = this.state.pastDogs;
+      allPastDogs.forEach(currentDog => {
+        // console.log('hi')
+        if (currentDog === dog) {
+          // console.log('hello')
+          if (!currentDog.isLoved) {
+            currentDog.isLoved = true
+            console.log('currentDogtrue', currentDog)
+          } else if (currentDog.isLoved) {
+            currentDog.isLoved = false;
+            console.log('currentDogfalse', currentDog)
 
-  }
+          }
+        }
+      })
+      console.log('allPastDogs', allPastDogs)
+      this.setState({pastDogs: allPastDogs})
+    }
 
   handleLoveTwo = () => {
     const dogTwo = this.state.dogTwo
