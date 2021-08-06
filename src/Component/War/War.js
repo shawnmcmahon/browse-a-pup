@@ -225,7 +225,6 @@ class War extends Component {
           render={() => {
               return(
                 <article className="dog-container">
-                  <h2>Past Doggos</h2>
                   {/* {this.mapDogs()} */}
                   <PastDogs pastDogs={this.state.pastDogs} isOnlyLoved="false" handleLoveClick={this.handleLoveClick}/>
                 </article>
@@ -237,9 +236,8 @@ class War extends Component {
           render={() => {
               return(
                 <article className="dog-container">
-                  <h2>Past Doggos</h2>
                   {/* {this.mapDogs()} */}
-                  <LovedDogs pastDogs={this.state.pastDogs} dogOne={this.state.dogOne} dogTwo={this.state.dogTwo}/>
+                  <LovedDogs pastDogs={this.state.pastDogs} dogOne={this.state.dogOne} dogTwo={this.state.dogTwo} handleLoveClick={this.handleLoveClick}/>
                 </article>
               )
             }}

@@ -24,6 +24,7 @@ const LovedDogs = ({pastDogs, handleLoveClick}) => {
   
   return (
     <section>
+      <h2>Loved Dogs</h2>
       {mappedLovedDogs}
     </section>
   )
