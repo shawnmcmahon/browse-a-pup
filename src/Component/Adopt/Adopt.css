@@ -1,3 +1,11 @@
+h4 {
+  align-self: center;
+  margin: 1%;
+  font-size: 16px;
+  justify-content: center;
+  display: flex;
+}
+
 .dog-container {
  max-width: 300px;
  max-height: 300px;

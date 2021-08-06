@@ -29,7 +29,6 @@ class App extends Component {
       <BrowserRouter>
         <div className="App">
           <Header />
-          <h3> War </h3>
           <Adopt allDogs={this.state.allDogs}/>
         </div>
       </BrowserRouter>
