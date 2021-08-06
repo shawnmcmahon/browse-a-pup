@@ -81,6 +81,7 @@ class War extends Component {
 
     this.setState({dogOne: this.state.allDogs[0]})
     this.setState({dogTwo: this.state.allDogs[1]})
+    this.setState({pastDogs: [this.state.dogOne, this.state.dogTwo]})
     this.state.allDogs.splice(1, 2);
 
   }
@@ -98,7 +99,15 @@ class War extends Component {
     firstDog.percentageWon = Math.floor((firstDog.roundsWon / firstDog.roundTotal * 100));
     secondDog.roundTotal++;
     secondDog.percentageWon = secondDog.roundsWon / secondDog.roundTotal;
-    this.setState({dogOne: firstDog, dogTwo: this.state.allDogs[1], pastDogs: [...this.state.pastDogs, secondDog]});
+
+    this.setState({dogOne: firstDog, dogTwo: this.state.allDogs[1]});
+    if (!this.state.pastDogs.includes(secondDog)) {
+      this.setState({pastDogs: [...this.state.pastDogs, secondDog]});
+    }
+
+
+
+
     this.state.allDogs.splice(1, 1);
 
   }
@@ -114,25 +123,27 @@ class War extends Component {
     secondDog.percentageWon = Math.floor((secondDog.roundsWon / secondDog.roundTotal * 100));
     firstDog.roundTotal++;
     firstDog.percentageWon = firstDog.roundsWon / firstDog.roundTotal;
-    this.setState({dogOne: this.state.allDogs[0], dogTwo: secondDog, pastDogs: [...this.state.pastDogs, firstDog]});
+
+    // this.setState({dogOne: this.state.allDogs[0], dogTwo: secondDog, pastDogs: [...this.state.pastDogs, firstDog]});
+
+    this.setState({dogOne: this.state.allDogs[0], dogTwo: secondDog})
+    if (!this.state.pastDogs.includes(firstDog)) {
+      this.setState({pastDogs: [...this.state.pastDogs, firstDog]});
+    }
+
+
+
+
+
     this.state.allDogs.splice(0, 1);
 
-    // this.setState({dogTwo: secondDog})
-    // this.setState({pastDogs: [...this.state.pastDogs, firstDog]})
-    // this.state.allDogs.splice(0, 1);
-    // this.setState({dogOne: this.state.allDogs[0]})
 
   }
 
-  handleLoveOne = () => {
-    const dogOne = this.state.dogOne
-    if (!dogOne.isLoved) {
-      dogOne.isLoved = true;
-      this.setState({dogOne: dogOne})
-    } else {
-      dogOne.isLoved = false;
-      this.setState({dogOne: dogOne})
-    }
+  handleLoveClick = (event, dog) => {
+    console.log('dog', dog)
+    console.log('state dog one', this.state.dogOne)
+
   }
 
   handleLoveTwo = () => {
@@ -181,15 +192,15 @@ class War extends Component {
               <div>
                 <h4> Doggo 1</h4>
                 <article className="dog-container">
-                  <Dog className="dog" alt="dog one" image={this.state.dogOne.image} />
+                  <Dog className="dog" alt="dog one" dog={this.state.dogOne} handleLoveClick={this.handleLoveClick}/>
                   <button onClick={(event) => this.handleClickOne(event)}>Keep</button>
-                  <button onClick={(event) => this.handleLoveOne(event)}>Love</button>
+                  {/* <button onClick={(event) => this.handleLoveOne(event)}>Love</button> */}
                 </article>
                 <h4> Doggo 2</h4>
                 <article className="dog-container">
-                  <Dog className="dog" alt="dog two" image={this.state.dogTwo.image} />
+                <Dog className="dog" alt="dog one" dog={this.state.dogTwo} handleLoveClick={this.handleLoveClick}/>
                   <button onClick={(event) => this.handleClickTwo(event)}>Keep</button>
-                  <button onClick={(event) => this.handleLoveTwo(event)}>Love</button>
+                  {/* <button onClick={(event) => this.handleLoveTwo(event)}>Love</button> */}
                 </article>
               </div>
             )   
