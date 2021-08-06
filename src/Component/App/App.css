@@ -3,4 +3,6 @@
   flex-direction: column;
   background-color: #F7EDF5;
   height: 100%;
+  width: 100%;
+  align-items: center;
 }
