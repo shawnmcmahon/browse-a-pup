@@ -4,9 +4,9 @@ import './LovedDogs.css';
 import { NavLink } from 'react-router-dom';
 
 
-const LovedDogs = ({pastDogs, dogOne, dogTwo}) => {
+const LovedDogs = ({pastDogs, handleLoveClick}) => {
 
-  const allDogs = [...pastDogs, dogOne, dogTwo];
+  const allDogs = [...pastDogs];
 
   const allLovedDogs = allDogs.filter(currentDog => currentDog.isLoved)
 
@@ -17,7 +17,7 @@ const LovedDogs = ({pastDogs, dogOne, dogTwo}) => {
       console.log('all Dogs', allDogs)
       console.log('allLovedDogs', allLovedDogs)
       return (
-          <Dog dog={currentDog} key={currentDog.image} />
+          <Dog dog={currentDog} key={currentDog.image} handleLoveClick={handleLoveClick} />
       )
   })
 

@@ -148,15 +148,15 @@ class War extends Component {
           // console.log('hello')
           if (!currentDog.isLoved) {
             currentDog.isLoved = true
-            console.log('currentDogtrue', currentDog)
+            // console.log('currentDogtrue', currentDog)
           } else if (currentDog.isLoved) {
             currentDog.isLoved = false;
-            console.log('currentDogfalse', currentDog)
+            // console.log('currentDogfalse', currentDog)
 
           }
         }
       })
-      console.log('allPastDogs', allPastDogs)
+      // console.log('allPastDogs', allPastDogs)
       this.setState({pastDogs: allPastDogs})
     }
 
@@ -212,7 +212,7 @@ class War extends Component {
                 </article>
                 <h4> Doggo 2</h4>
                 <article className="dog-container">
-                <Dog className="dog" alt="dog one" dog={this.state.dogTwo} handleLoveClick={this.handleLoveClick}/>
+                <Dog className="dog" alt="dog two" dog={this.state.dogTwo} handleLoveClick={this.handleLoveClick}/>
                   <button onClick={(event) => this.handleClickTwo(event)}>Keep</button>
                   {/* <button onClick={(event) => this.handleLoveTwo(event)}>Love</button> */}
                 </article>
