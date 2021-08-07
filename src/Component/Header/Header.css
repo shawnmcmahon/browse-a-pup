@@ -13,6 +13,7 @@ h2 {
 .header {
   background-color: #47446D;
   width: 100%;
+  height: 5%;
   border-bottom-right-radius: 25px;
   border-bottom-left-radius: 25px;
   display: flex;

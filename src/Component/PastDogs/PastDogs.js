@@ -14,10 +14,12 @@ const PastDogs = ({pastDogs, handleLoveClick}) => {
 
   
   return (
-    <section>
+    <>
       <h2>Past Dogs</h2>
-      {mappedPastDogs}
-    </section>
+      <section className="past-dogs-container">
+        {mappedPastDogs}
+      </section>
+    </>
   )
 
 }

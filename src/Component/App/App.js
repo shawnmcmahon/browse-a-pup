@@ -27,10 +27,12 @@ class App extends Component {
   render() {
     return (
       <BrowserRouter>
-        <div className="App">
+        <>
           <Header />
-          <Adopt allDogs={this.state.allDogs}/>
-        </div>
+          <div className="App">
+            <Adopt allDogs={this.state.allDogs}/>
+          </div>
+        </>
       </BrowserRouter>
     );
   }

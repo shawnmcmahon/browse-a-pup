@@ -1,0 +1,25 @@
+h3, h4 {
+  align-self: center;
+  margin: 3%;
+  font-size: 16px;
+  justify-content: center;
+  display: flex;
+}
+
+
+.dog {
+  width: 200px;
+  height: 200px; 
+  border-radius: 50%;
+  margin: 20px;
+}
+
+
+.past-dogs-container {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-top: 20px;
+  width: 100%
+}
