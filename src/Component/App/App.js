@@ -11,18 +11,6 @@ class App extends Component {
         allDogs: []
       }
     }
-
-  // componentDidMount() {
-  //   fetch('https://dog.ceo/api/breeds/image/random/50')
-  //     .then(response => response.json())
-  //     .then(data => {
-  //       this.setState({allDogs: data.message})
-  //       // console.log(this.state.allDogs)
-      
-  //     })
-  // }
-
-
   
   render() {
     return (

@@ -1,5 +1,5 @@
 import React from 'react';
-import './Dog.css';
+import './DogDetails.css';
 
 const Dog = ({dog, handleLoveClick}) => {
 
@@ -9,8 +9,6 @@ const Dog = ({dog, handleLoveClick}) => {
           <img src={dog.image} 
           className="dog" alt="past dog" />
           <button className={ dog.isLoved ?"love-button-true" : "love-button-false" } onClick={(event) => handleLoveClick(event, dog)}></button>
-          <p> {dog.breed}</p>
-          <p> {dog.roundsWon}</p>
       </article>
     </>
   )

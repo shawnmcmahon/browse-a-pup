@@ -1,7 +1,6 @@
 import React from 'react';
-import {BrowserRouter, Route, Switch, Redirect, NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import './Header.css'
-import home from '../../assets/home.png';
 
 
 const Header = () => {

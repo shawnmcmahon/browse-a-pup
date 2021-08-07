@@ -1,3 +1,7 @@
+p {
+  margin: 3px;
+}
+
 
 .love-button-false {
   background-image: url('../../assets/heart_border_black.png');
@@ -32,11 +36,14 @@
   border-bottom-left-radius: 25px;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: center;
   margin-left: 10px;
   margin-right: 10px;
   margin-bottom: 10px;
+  align-items: center;
 }
+
+
 
 
 

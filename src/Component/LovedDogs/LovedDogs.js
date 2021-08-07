@@ -1,7 +1,6 @@
 import React from 'react';
 import Dog from '../Dog/Dog'
 import './LovedDogs.css';
-import { NavLink } from 'react-router-dom';
 
 
 const LovedDogs = ({pastDogs, handleLoveClick}) => {
@@ -14,8 +13,6 @@ const LovedDogs = ({pastDogs, handleLoveClick}) => {
 
 
   const mappedLovedDogs = allLovedDogs.map(currentDog => {
-      console.log('all Dogs', allDogs)
-      console.log('allLovedDogs', allLovedDogs)
       return (
           <Dog dog={currentDog} key={currentDog.image} handleLoveClick={handleLoveClick} />
       )
