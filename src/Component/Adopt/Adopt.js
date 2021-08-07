@@ -207,14 +207,14 @@ class Adopt extends Component {
           render={() => {
             return (
               <div className="adopt-container">
-                <h3>Choose Your Doggo</h3>
-                <h4> Red Doggo</h4>
+                {/* <h3>Choose Your Doggo</h3> */}
+                {/* <h4> Red Doggo</h4> */}
                 <section className="red-container">
                   <button className="keep-button" onClick={(event) => this.handleClickOne(event)}>Keep</button>
                   <Dog className="dog one" id="dogOne" data-cy="dogOne" alt="dog one" dog={this.state.dogOne} handleLoveClick={this.handleLoveClick}/>
                   {/* <button onClick={(event) => this.handleLoveOne(event)}>Love</button> */}
                 </section>
-                <h4> Blue Doggo </h4>
+                {/* <h4> Blue Doggo </h4> */}
                 <section className="blue-container">
                 <button className="keep-button" onClick={(event) => this.handleClickTwo(event)}>Keep</button>
                 <Dog className="dog two" id="dogTwo" data-cy="dogTwo" alt="dog two" dog={this.state.dogTwo} handleLoveClick={this.handleLoveClick}/>
