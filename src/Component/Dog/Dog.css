@@ -10,5 +10,22 @@
   border: none;
 }
 
+.dog-box {
+  background-color: #BCC3F7;
+  width: 225px;
+  height: 325px;
+  display: flex;
+  justify-content: center;
+
+  border-bottom-right-radius: 25px;
+  border-bottom-left-radius: 25px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+
 
 

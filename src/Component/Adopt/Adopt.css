@@ -58,17 +58,15 @@ h3, h4 {
   border: none;
   color: white;
   font-size: 20px;
-  border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
-  width: 100%;
-  height: 50px;
+  width: 225px;
+  height: 40px;
+  margin-left: 10px;
 
 }
 
 .adopt-container {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   height: 100%;
   background-color: #F7EDF5;
 }
