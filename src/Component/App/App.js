@@ -18,7 +18,7 @@ class App extends Component {
         <>
           <Header />
           <div className="App">
-            <Adopt allDogs={this.state.allDogs}/>
+          <Adopt allDogs={this.state.allDogs}/>
           </div>
         </>
       </BrowserRouter>

@@ -3,6 +3,7 @@ describe('Adopt', () => {
     cy.visit('http://localhost:3000');
   });
 
+
   it('Should see the home page upon load' , () => {
     cy.get('div').should('have.class', 'adopt-container').should('be.visible')
     cy.get('[data-cy="dog-box"]')
