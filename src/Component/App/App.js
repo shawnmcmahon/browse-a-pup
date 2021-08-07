@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import War from '../War/War';
+import Adopt from '../Adopt/Adopt';
 import Header from '../Header/Header';
 import { BrowserRouter } from 'react-router-dom';
 import './App.css';
@@ -11,27 +11,16 @@ class App extends Component {
         allDogs: []
       }
     }
-
-  // componentDidMount() {
-  //   fetch('https://dog.ceo/api/breeds/image/random/50')
-  //     .then(response => response.json())
-  //     .then(data => {
-  //       this.setState({allDogs: data.message})
-  //       // console.log(this.state.allDogs)
-      
-  //     })
-  // }
-
-
   
   render() {
     return (
       <BrowserRouter>
-        <div className="App">
+        <>
           <Header />
-          <h3> War </h3>
-          <War allDogs={this.state.allDogs}/>
-        </div>
+          <div className="App">
+            <Adopt allDogs={this.state.allDogs}/>
+          </div>
+        </>
       </BrowserRouter>
     );
   }

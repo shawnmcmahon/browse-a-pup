@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import PastDogs from '../PastDogs/PastDogs';
 import LovedDogs from '../LovedDogs/LovedDogs';
 import Dog from '../Dog/Dog';
-import {BrowserRouter, Route, Switch, Redirect, NavLink } from 'react-router-dom';
-import './War.css';
+import {Route, Switch} from 'react-router-dom';
+import './Adopt.css';
 
-class War extends Component {
+class Adopt extends Component {
   constructor(props) {
     super(props) 
       this.state = {
@@ -23,6 +23,7 @@ class War extends Component {
         this.setState({allDogs: data.message})
         this.createDogObjects();
         this.assignBreed();
+        this.assignID();
         this.assignDogsOneAndTwo();
       })
 
@@ -33,7 +34,7 @@ class War extends Component {
       const dogObjects = this.state.allDogs.map(currentDog => {
         let dog = {
           image: currentDog, 
-          key: currentDog,
+          key: '',
           isLoved: false, 
           roundsWon: 0, 
           roundTotal: 0,
@@ -46,24 +47,9 @@ class War extends Component {
       return dogObjects;
   }
 
-//   mapDogs = () => {
-//     if (this.state.pastDogs) {
-//       const mappedPastDogs = this.state.pastDogs.map(currentDog => {
-//         return (
-//           <div>
-//             <img className="dog" alt="past dog" src={currentDog.image}/>
-//           </div>
-//         )
-//       })
-      
-    
-//     return mappedPastDogs;
-//   }
-// }
 
   assignBreed = () => {
     const allDogs = this.state.allDogs; 
-    // console.log('all dogs image', allDogs[0].image.split('/'))
     const allDogsWithBreeds = allDogs.map(currentDog => {
       let breed = currentDog.image.split('/')[4]
       if (breed.includes('-')) { 
@@ -76,9 +62,18 @@ class War extends Component {
     return allDogsWithBreeds;
   }
 
-  
-  assignDogsOneAndTwo= () => {
+  assignID = () => {
+    const allDogs = this.state.allDogs; 
+    const allDogsWithIDs = allDogs.map(currentDog => {
+      let id = currentDog.image.split('/')[5]
+      currentDog.id = id;
+      currentDog.key = id;
+      return currentDog;
+    })
+    return allDogsWithIDs;
+  }
 
+  assignDogsOneAndTwo= () => {
     this.setState({pastDogs: [this.state.allDogs[0], this.state.allDogs[1]]})
     this.state.allDogs.splice(1, 2);
     this.setState({dogOne: this.state.pastDogs[0]})
@@ -90,10 +85,6 @@ class War extends Component {
     event.preventDefault();
     const firstDog = this.state.dogOne
     const secondDog = this.state.dogTwo
-    console.log('first dog', firstDog)
-    console.log('second dog', secondDog)
-
-
     firstDog.roundsWon++;
     firstDog.roundTotal++;
     firstDog.percentageWon = Math.floor((firstDog.roundsWon / firstDog.roundTotal * 100));
@@ -105,11 +96,7 @@ class War extends Component {
       this.setState({pastDogs: [...this.state.pastDogs, secondDog]});
     }
 
-
-
-
     this.state.allDogs.splice(1, 1);
-
   }
 
 
@@ -124,75 +111,28 @@ class War extends Component {
     firstDog.roundTotal++;
     firstDog.percentageWon = firstDog.roundsWon / firstDog.roundTotal;
 
-    // this.setState({dogOne: this.state.allDogs[0], dogTwo: secondDog, pastDogs: [...this.state.pastDogs, firstDog]});
-
     this.setState({dogOne: this.state.allDogs[0], dogTwo: secondDog})
     if (!this.state.pastDogs.includes(firstDog)) {
       this.setState({pastDogs: [...this.state.pastDogs, firstDog]});
     }
 
-
-
-
-
     this.state.allDogs.splice(0, 1);
-
 
   }
 
   handleLoveClick = (event, dog) => {
     const allPastDogs = this.state.pastDogs;
       allPastDogs.forEach(currentDog => {
-        // console.log('hi')
         if (currentDog === dog) {
-          // console.log('hello')
           if (!currentDog.isLoved) {
             currentDog.isLoved = true
-            // console.log('currentDogtrue', currentDog)
           } else if (currentDog.isLoved) {
             currentDog.isLoved = false;
-            // console.log('currentDogfalse', currentDog)
-
           }
         }
       })
-      // console.log('allPastDogs', allPastDogs)
       this.setState({pastDogs: allPastDogs})
     }
-
-  handleLoveTwo = () => {
-    const dogTwo = this.state.dogTwo
-    if (!dogTwo.isLoved) {
-      dogTwo.isLoved = true;
-      this.setState({dogTwo: dogTwo})
-    } else {
-      dogTwo.isLoved = false;
-      this.setState({dogTwo: dogTwo})
-    }
-  }
-
-  // handleLoveOne = () => {
-  //   const pastState = [...this.state.allDogs]
-  //   if (!pastState[0].isLoved) {
-  //     pastState[0].isLoved = true;
-  //     this.setState({pastState})
-  //   } else {
-  //     pastState[0].isLoved = false;
-  //     this.setState({pastState})
-  //   }
-  // }
-
-  // handleLoveTwo = () => {
-  //   const pastState = [...this.state.allDogs]
-  //   if (!pastState[1].isLoved) {
-  //     pastState[1].isLoved = true;
-  //     this.setState({pastState})
-  //   } else {
-  //     pastState[1].isLoved = false;
-  //     this.setState({pastState})
-  //   }
-  // }
-
   
 
   
@@ -201,21 +141,13 @@ class War extends Component {
       <Switch>
         <Route 
           exact path ='/'
-          render={() => {
+          render={({match}) => {
             return (
-              <div>
-                <h4> Doggo 1</h4>
-                <article className="dog-container">
-                  <Dog className="dog" alt="dog one" dog={this.state.dogOne} handleLoveClick={this.handleLoveClick}/>
-                  <button onClick={(event) => this.handleClickOne(event)}>Keep</button>
-                  {/* <button onClick={(event) => this.handleLoveOne(event)}>Love</button> */}
-                </article>
-                <h4> Doggo 2</h4>
-                <article className="dog-container">
-                <Dog className="dog" alt="dog two" dog={this.state.dogTwo} handleLoveClick={this.handleLoveClick}/>
-                  <button onClick={(event) => this.handleClickTwo(event)}>Keep</button>
-                  {/* <button onClick={(event) => this.handleLoveTwo(event)}>Love</button> */}
-                </article>
+              <div className="adopt-container">
+                  <button className="keep-button" onClick={(event) => this.handleClickOne(event)}>Keep</button>
+                  <Dog className="dog one" id="dogOne" data-cy="dogOne" alt="dog one" dog={this.state.dogOne} handleLoveClick={this.handleLoveClick}/>
+                <button className="keep-button" onClick={(event) => this.handleClickTwo(event)}>Keep</button>
+                <Dog className="dog two" id="dogTwo" data-cy="dogTwo" alt="dog two" dog={this.state.dogTwo} handleLoveClick={this.handleLoveClick}/>
               </div>
             )   
             }}
@@ -225,7 +157,6 @@ class War extends Component {
           render={() => {
               return(
                 <article className="dog-container">
-                  {/* {this.mapDogs()} */}
                   <PastDogs pastDogs={this.state.pastDogs} isOnlyLoved="false" handleLoveClick={this.handleLoveClick}/>
                 </article>
               )
@@ -236,7 +167,6 @@ class War extends Component {
           render={() => {
               return(
                 <article className="dog-container">
-                  {/* {this.mapDogs()} */}
                   <LovedDogs pastDogs={this.state.pastDogs} dogOne={this.state.dogOne} dogTwo={this.state.dogTwo} handleLoveClick={this.handleLoveClick}/>
                 </article>
               )
@@ -248,4 +178,4 @@ class War extends Component {
 }
 
 
-export default War;
+export default Adopt;
