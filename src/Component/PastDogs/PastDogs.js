@@ -14,7 +14,7 @@ const PastDogs = ({pastDogs, handleLoveClick}) => {
   return (
     <>
       <h2>Past Dogs</h2>
-      <section className="past-dogs-container">
+      <section className="past-dogs-container" data-cy="past-dogs-container">
         {mappedPastDogs}
       </section>
     </>
