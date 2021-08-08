@@ -20,7 +20,7 @@ class Adopt extends Component {
   }
 
   componentDidMount() {
-    fetch('https://dg.ceo/api/breeds/image/random/50')
+    fetch('https://dog.ceo/api/breeds/image/random/50')
       .then(response => response.json())
       .then(data => {
         this.setState({allDogs: data.message})
@@ -30,7 +30,7 @@ class Adopt extends Component {
         this.assignDogsOneAndTwo();
         this.setState({isLoading: false})
       })
-      .catch(error => this.setState({errorMessage : error.message, isLoading: false}))
+      .catch(error => this.setState({errorMessage :  `${error.message}`, isLoading: false}))
 
     
   }
@@ -169,10 +169,17 @@ class Adopt extends Component {
           exact path='/past-dogs' 
           render={() => {
               return(
-                <article className="dog-container">
+                <>
                   {!this.state.errorMessage && this.state.isLoading && <h2>Loading. One moment please...</h2>}
-                  <PastDogs pastDogs={this.state.pastDogs} isOnlyLoved="false" handleLoveClick={this.handleLoveClick}/>
-                </article>
+                  {!!this.state.errorMessage && !this.state.isLoading && <ErrorHandling errorMessage={this.state.errorMessage} />}
+                  {!this.state.errorMessage && !this.state.isLoading && 
+                  
+                    (<article className="dog-container">
+                      {!this.state.errorMessage && this.state.isLoading && <h2>Loading. One moment please...</h2>}
+                      <PastDogs pastDogs={this.state.pastDogs} isOnlyLoved="false" handleLoveClick={this.handleLoveClick}/>
+                    </article>)}
+                  </>
+            
               )
             }}
             / > 
@@ -180,20 +187,25 @@ class Adopt extends Component {
           exact path='/loved-dogs' 
           render={() => {
               return(
-                <article className="dog-container">
+                <>
                   {!this.state.errorMessage && this.state.isLoading && <h2>Loading. One moment please...</h2>}
-                  {!!this.state.errorMessage && this.state.isLoading && <ErrorHandling errorMessage={this.state.errorMessage} />}
-                  <LovedDogs pastDogs={this.state.pastDogs} dogOne={this.state.dogOne} dogTwo={this.state.dogTwo} handleLoveClick={this.handleLoveClick}/>
-                </article>
+                  {!!this.state.errorMessage && !this.state.isLoading && <ErrorHandling errorMessage={this.state.errorMessage} />}
+                  {!this.state.errorMessage && !this.state.isLoading && 
+                    (<article className="dog-container">
+                      {!this.state.errorMessage && this.state.isLoading && <h2>Loading. One moment please...</h2>}
+                      {!!this.state.errorMessage && this.state.isLoading && <ErrorHandling errorMessage={this.state.errorMessage} />}
+                      <LovedDogs pastDogs={this.state.pastDogs} dogOne={this.state.dogOne} dogTwo={this.state.dogTwo} handleLoveClick={this.handleLoveClick}/>
+                    </article>)}
+                  </>  
               )
             }}
             / > 
         <Route
           render={() => (
-            <ErrorHandling errorMessage={this.state.errorMessage}/>
+            <ErrorHandling errorMessage="Sorry that page does not exist" />
           )}
         />
-        </Switch> 
+      </Switch> 
     )
   }
 }

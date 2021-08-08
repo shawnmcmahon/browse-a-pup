@@ -5,7 +5,7 @@ const ErrorHandling = ({ errorMessage }) => {
   return  (
     <>
       <h2>Error</h2>
-      <p> {errorMessage} </p>
+      <p> {errorMessage === "Failed to fetch" ? `Server Error Status Code 500: ${errorMessage}` : `Error 404: ${errorMessage}` } </p>
     </>
   )
 
