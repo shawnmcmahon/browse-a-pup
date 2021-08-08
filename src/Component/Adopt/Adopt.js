@@ -143,10 +143,10 @@ class Adopt extends Component {
           exact path ='/'
           render={({match}) => {
             return (
-              <div className="adopt-container">
-                  <button className="keep-button" onClick={(event) => this.handleClickOne(event)}>Keep</button>
-                  <Dog className="dog one" id="dogOne" data-cy="dogOne" alt="dog one" dog={this.state.dogOne} handleLoveClick={this.handleLoveClick}/>
-                <button className="keep-button" onClick={(event) => this.handleClickTwo(event)}>Keep</button>
+              <div className="adopt-container" data-cy="adopt-container">
+                <button className="keep-button one" onClick={(event) => this.handleClickOne(event)} data-cy="keep-button-one">Keep</button>
+                <Dog className="dog one" id="dogOne" data-cy="dogOne" alt="dog one" dog={this.state.dogOne} handleLoveClick={this.handleLoveClick}/>
+                <button className="keep-button" data-cy="keep-button-two" onClick={(event) => this.handleClickTwo(event)}>Keep</button>
                 <Dog className="dog two" id="dogTwo" data-cy="dogTwo" alt="dog two" dog={this.state.dogTwo} handleLoveClick={this.handleLoveClick}/>
               </div>
             )   
