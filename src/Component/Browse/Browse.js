@@ -6,9 +6,10 @@ import ErrorHandling from '../ErrorHandling/ErrorHandling';
 import {Route, Switch} from 'react-router-dom';
 import checkForError from '../../util';
 import PropTypes from 'prop-types';
-import './Adopt.css';
+import fetchDogImages  from '../../apiCalls';
+import './Browse.css';
 
-class Adopt extends Component {
+class Browse extends Component {
   constructor(props) {
     super(props) 
       this.state = {
@@ -22,8 +23,7 @@ class Adopt extends Component {
   }
 
   componentDidMount() {
-    fetch('https://dog.ceo/api/breeds/image/random/50')
-    .then(response => checkForError(response))
+    fetchDogImages()
     .then(data => {
         this.setState({allDogs: data.message})
         this.createDogObjects();
@@ -94,13 +94,15 @@ class Adopt extends Component {
 
   handleClickOne = (event) => {
     event.preventDefault();
+    this.checkIfEmptyAndRefill()
+    this.checkForDuplicateDog();
     const firstDog = this.state.dogOne
     const secondDog = this.state.dogTwo
     firstDog.roundsWon++;
     firstDog.roundTotal++;
-    firstDog.percentageWon = Math.floor((firstDog.roundsWon / firstDog.roundTotal * 100));
+    firstDog.percentageWon = Math.round((firstDog.roundsWon / firstDog.roundTotal) * 100);
     secondDog.roundTotal++;
-    secondDog.percentageWon = secondDog.roundsWon / secondDog.roundTotal;
+    secondDog.percentageWon = Math.round((secondDog.roundsWon / secondDog.roundTotal) * 100);
 
     this.setState({dogOne: firstDog, dogTwo: this.state.allDogs[1]});
     if (!this.state.pastDogs.includes(secondDog)) {
@@ -113,14 +115,16 @@ class Adopt extends Component {
 
   handleClickTwo = (event) => {
     event.preventDefault();
+    this.checkIfEmptyAndRefill();
+    this.checkForDuplicateDog();
     const firstDog = this.state.dogOne
     const secondDog = this.state.dogTwo
 
     secondDog.roundsWon++;
     secondDog.roundTotal++;
-    secondDog.percentageWon = Math.floor((secondDog.roundsWon / secondDog.roundTotal * 100));
+    secondDog.percentageWon =  Math.round((secondDog.roundsWon / secondDog.roundTotal) * 100);
     firstDog.roundTotal++;
-    firstDog.percentageWon = firstDog.roundsWon / firstDog.roundTotal;
+    firstDog.percentageWon =  Math.round((firstDog.roundsWon / firstDog.roundTotal) * 100);
 
     this.setState({dogOne: this.state.allDogs[0], dogTwo: secondDog})
     if (!this.state.pastDogs.includes(firstDog)) {
@@ -130,6 +134,28 @@ class Adopt extends Component {
     this.state.allDogs.splice(0, 1);
 
   }
+
+  checkIfEmptyAndRefill = () => {
+    console.log('all dogs', this.state.allDogs)
+    if (this.state.allDogs.length === 2) {
+      const allPastDogs = this.state.pastDogs; 
+      // console.log('pastDogs', allPastDogs)
+      const sortedPastDogs = allPastDogs.sort(() => .5 - Math.random())
+      console.log('sorted dogs', sortedPastDogs)
+      this.setState({allDogs: []})
+      this.setState({allDogs: sortedPastDogs})
+      console.log('all dogs state', this.state.allDogs)
+    }
+  }
+
+  checkForDuplicateDog = () => {
+    if (this.state.dogOne === this.state.dogTwo) {
+      const firstDog = this.state.dogOne
+      this.setState({dogOne: firstDog, dogTwo: this.state.allDogs[1]});
+    }
+  }
+
+
 
   handleLoveClick = (event, dog) => {
     const allPastDogs = this.state.pastDogs;
@@ -160,10 +186,12 @@ class Adopt extends Component {
                 {!!this.state.errorWarning && !this.state.isLoading && <ErrorHandling errorWarning={this.state.errorWarning} />}
                 {!this.state.errorWarning && !this.state.isLoading && 
                 (<>
+                  <h2>Browse A Pup</h2>
                   <button className="keep-button one" onClick={(event) => this.handleClickOne(event)} data-cy="keep-button-one">Keep</button>
-                  <Dog className="dog one" id="dogOne" data-cy="dogOne" alt="dog one" dog={this.state.dogOne} handleLoveClick={this.handleLoveClick}/>
+                  <Dog className="dog one" id="dogOne" data-cy="dog-one" alt="dog one" dog={this.state.dogOne} handleLoveClick={this.handleLoveClick}/>
                   <button className="keep-button" data-cy="keep-button-two" onClick={(event) => this.handleClickTwo(event)}>Keep</button>
                   <Dog className="dog two" id="dogTwo" data-cy="dogTwo" alt="dog two" dog={this.state.dogTwo} handleLoveClick={this.handleLoveClick}/>
+                  <h2 className="logo"></h2>
                 </>)
                   }
               </div>
@@ -213,14 +241,11 @@ class Adopt extends Component {
 }
 
 
-export default Adopt;
+export default Browse;
 
-ErrorHandling.propTypes = {
-  errorWarning: PropTypes.string.isRequired
-}
 
 Dog.propTypes = {
-  dog: PropTypes.object.isRequired
+  dog: PropTypes.object
 }
 
 PastDogs.propTypes = {

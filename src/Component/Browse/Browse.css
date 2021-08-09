@@ -7,6 +7,13 @@ h3, h4 {
 }
 
 
+.title {
+  background-image: url('../../assets/browse.png');
+  background-repeat: no-repeat;
+  width: 200px;
+  height: 200px;
+}
+
 
 
 .dog {
@@ -55,12 +62,14 @@ h3, h4 {
   display: flex;
   justify-content: center;
   background-color: #47446D;
-  border: none;
   color: white;
   font-size: 20px;
-  width: 225px;
+  width: 229px;
   height: 40px;
   margin-left: 10px;
+  margin-top: 10px;
+  border: 3px solid black;
+  border-bottom: 1px solid black;
 
 }
 

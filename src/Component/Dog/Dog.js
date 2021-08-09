@@ -9,8 +9,9 @@ const Dog = ({dog, handleLoveClick}) => {
           <img src={dog.image} 
           className="dog" alt="dog" data-cy="dog-image" />
           <button data-cy="love-dog" className={ dog.isLoved ?"love-button-true" : "love-button-false" } onClick={(event) => handleLoveClick(event, dog)}></button>
-          <p> {dog.breed}</p>
-          <p> {dog.roundsWon}</p>
+          <p> Breed: {dog.breed}</p>
+          <p> Rounds Kept: {dog.roundsWon}</p>
+          <p> Percent Kept: {dog.percentageWon} % </p>
       </article>
     </>
   )
