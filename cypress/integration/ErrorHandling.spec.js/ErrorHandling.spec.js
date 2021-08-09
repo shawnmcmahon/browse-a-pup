@@ -37,7 +37,7 @@ it('Should see a error when a 404 status code is received', () => {
       cy.get('p').should('contain', 'Something went wrong. Please try again.')
     })
 
-  it('Should see a 500 error if the API cannot be loaded', () => {
+  it('Should see an error if the API cannot be loaded', () => {
     cy.intercept({
       method: 'GET',
       url: 'https://dog.ceo/api/breeds/image/random/50'

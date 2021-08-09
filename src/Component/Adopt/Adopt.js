@@ -5,6 +5,7 @@ import Dog from '../Dog/Dog';
 import ErrorHandling from '../ErrorHandling/ErrorHandling';
 import {Route, Switch} from 'react-router-dom';
 import checkForError from '../../util';
+import PropTypes from 'prop-types';
 import './Adopt.css';
 
 class Adopt extends Component {
@@ -22,20 +23,6 @@ class Adopt extends Component {
 
   componentDidMount() {
     fetch('https://dog.ceo/api/breeds/image/random/50')
-    // .then(response => checkForError(response))
-    // .then(data => {
-    //   if (data) {
-    //     this.setState({allDogs: data.message})
-    //     this.createDogObjects();
-    //     this.assignBreed();
-    //     this.assignID();
-    //     this.assignDogsOneAndTwo();
-    //     this.setState({isLoading: false})
-    //   } else {
-    //     this.setState({errorWarning: 'empty data'})
-    //   }
-    // })
-    // .catch(error => this.setState({errorWarning :  error , isLoading: false}))
     .then(response => checkForError(response))
     .then(data => {
         this.setState({allDogs: data.message})
@@ -50,6 +37,7 @@ class Adopt extends Component {
 
     
   }
+
 
   createDogObjects = () => {
       const dogObjects = this.state.allDogs.map(currentDog => {
@@ -208,7 +196,7 @@ class Adopt extends Component {
                   {!!this.state.errorWarning && !this.state.isLoading && <ErrorHandling errorWarning={this.state.errorWarning} />}
                   {!this.state.errorWarning && !this.state.isLoading && 
                     (<article className="dog-container">
-                      <LovedDogs pastDogs={this.state.pastDogs} dogOne={this.state.dogOne} dogTwo={this.state.dogTwo} handleLoveClick={this.handleLoveClick}/>
+                      <LovedDogs pastDogs={this.state.pastDogs} handleLoveClick={this.handleLoveClick}/>
                     </article>)}
                   </>  
               )
@@ -226,3 +214,19 @@ class Adopt extends Component {
 
 
 export default Adopt;
+
+ErrorHandling.propTypes = {
+  errorWarning: PropTypes.string.isRequired
+}
+
+Dog.propTypes = {
+  dog: PropTypes.object.isRequired
+}
+
+PastDogs.propTypes = {
+  pastDogs: PropTypes.array.isRequired
+}
+
+LovedDogs.propTypes = {
+  pastDogs: PropTypes.array.isRequired
+}

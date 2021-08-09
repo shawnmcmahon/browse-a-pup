@@ -1,7 +1,7 @@
 import React from 'react';
 
 const ErrorHandling = ({ errorWarning }) => {
-  // console.log('error', errorWarning)
+  console.log('error', errorWarning)
   return  (
     <>
       <h2>Error</h2>
