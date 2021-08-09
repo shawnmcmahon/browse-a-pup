@@ -24,19 +24,15 @@ class Browse extends Component {
   componentDidMount() {
     fetchDogImages()
     .then(data => {
-        this.setState({allDogs: data.message})
+        this.setState({allDogs: data.message});
         this.createDogObjects();
         this.assignBreed();
         this.assignID();
         this.assignDogsOneAndTwo();
-        this.setState({isLoading: false})
+        this.setState({isLoading: false});
     })
-    .catch(error => this.setState({errorWarning :  error , isLoading: false}))
-    
-
-    
+    .catch(error => this.setState({errorWarning :  error , isLoading: false}));  
   }
-
 
   createDogObjects = () => {
       const dogObjects = this.state.allDogs.map(currentDog => {
@@ -53,8 +49,6 @@ class Browse extends Component {
       })
       this.setState({allDogs: dogObjects})
       return dogObjects;
-
-
   }
 
 
@@ -84,19 +78,19 @@ class Browse extends Component {
   }
 
   assignDogsOneAndTwo= () => {
-    this.setState({pastDogs: [this.state.allDogs[0], this.state.allDogs[1]]})
+    this.setState({pastDogs: [this.state.allDogs[0], this.state.allDogs[1]]});
     this.state.allDogs.splice(1, 2);
-    this.setState({dogOne: this.state.pastDogs[0]})
-    this.setState({dogTwo: this.state.pastDogs[1]})
+    this.setState({dogOne: this.state.pastDogs[0]});
+    this.setState({dogTwo: this.state.pastDogs[1]});
 
   }
 
   handleClickOne = (event) => {
     event.preventDefault();
-    this.checkIfEmptyAndRefill()
+    this.checkIfEmptyAndRefill();
     this.checkForDuplicateDog();
-    const firstDog = this.state.dogOne
-    const secondDog = this.state.dogTwo
+    const firstDog = this.state.dogOne;
+    const secondDog = this.state.dogTwo;
     firstDog.roundsWon++;
     firstDog.roundTotal++;
     firstDog.percentageWon = Math.round((firstDog.roundsWon / firstDog.roundTotal) * 100);
@@ -116,55 +110,51 @@ class Browse extends Component {
     event.preventDefault();
     this.checkIfEmptyAndRefill();
     this.checkForDuplicateDog();
-    const firstDog = this.state.dogOne
-    const secondDog = this.state.dogTwo
-
+    const firstDog = this.state.dogOne;
+    const secondDog = this.state.dogTwo;
     secondDog.roundsWon++;
     secondDog.roundTotal++;
     secondDog.percentageWon =  Math.round((secondDog.roundsWon / secondDog.roundTotal) * 100);
     firstDog.roundTotal++;
     firstDog.percentageWon =  Math.round((firstDog.roundsWon / firstDog.roundTotal) * 100);
-
-    this.setState({dogOne: this.state.allDogs[0], dogTwo: secondDog})
+    this.setState({dogOne: this.state.allDogs[0], dogTwo: secondDog});
     if (!this.state.pastDogs.includes(firstDog)) {
       this.setState({pastDogs: [...this.state.pastDogs, firstDog]});
     }
 
     this.state.allDogs.splice(0, 1);
 
-  }
+  };
 
   checkIfEmptyAndRefill = () => {
     if (this.state.allDogs.length === 2) {
       const allPastDogs = this.state.pastDogs; 
-      const sortedPastDogs = allPastDogs.sort(() => .5 - Math.random())
-      this.setState({allDogs: []})
-      this.setState({allDogs: sortedPastDogs})
+      const sortedPastDogs = allPastDogs.sort(() => .5 - Math.random());
+      this.setState({allDogs: []});
+      this.setState({allDogs: sortedPastDogs});
     }
-  }
+  };
 
   checkForDuplicateDog = () => {
     if (this.state.dogOne === this.state.dogTwo) {
-      const firstDog = this.state.dogOne
+      const firstDog = this.state.dogOne;
       this.setState({dogOne: firstDog, dogTwo: this.state.allDogs[1]});
     }
-  }
-
-
+  };
 
   handleLoveClick = (event, dog) => {
     const allPastDogs = this.state.pastDogs;
       allPastDogs.forEach(currentDog => {
         if (currentDog === dog) {
           if (!currentDog.isLoved) {
-            currentDog.isLoved = true
+            currentDog.isLoved = true;
           } else if (currentDog.isLoved) {
             currentDog.isLoved = false;
           }
         }
       })
-      this.setState({pastDogs: allPastDogs})
-    }
+      this.setState({pastDogs: allPastDogs});
+    };
   
 
   
