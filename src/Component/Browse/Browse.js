@@ -100,9 +100,9 @@ class Browse extends Component {
     const secondDog = this.state.dogTwo
     firstDog.roundsWon++;
     firstDog.roundTotal++;
-    firstDog.percentageWon = (firstDog.roundsWon / firstDog.roundTotal * 100);
+    firstDog.percentageWon = Math.round((firstDog.roundsWon / firstDog.roundTotal) * 100);
     secondDog.roundTotal++;
-    secondDog.percentageWon = (secondDog.roundsWon / secondDog.roundTotal * 100);
+    secondDog.percentageWon = Math.round((secondDog.roundsWon / secondDog.roundTotal) * 100);
 
     this.setState({dogOne: firstDog, dogTwo: this.state.allDogs[1]});
     if (!this.state.pastDogs.includes(secondDog)) {
@@ -122,9 +122,9 @@ class Browse extends Component {
 
     secondDog.roundsWon++;
     secondDog.roundTotal++;
-    secondDog.percentageWon = (secondDog.roundsWon / secondDog.roundTotal * 100);
+    secondDog.percentageWon =  Math.round((secondDog.roundsWon / secondDog.roundTotal) * 100);
     firstDog.roundTotal++;
-    firstDog.percentageWon = (firstDog.roundsWon / firstDog.roundTotal * 100);
+    firstDog.percentageWon =  Math.round((firstDog.roundsWon / firstDog.roundTotal) * 100);
 
     this.setState({dogOne: this.state.allDogs[0], dogTwo: secondDog})
     if (!this.state.pastDogs.includes(firstDog)) {
