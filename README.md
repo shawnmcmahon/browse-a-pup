@@ -35,10 +35,8 @@ Run `npm start`
 <img src="https://img.shields.io/badge/-ReactJs-61DAFB?logo=react" alt="React" />
 <img src="https://img.shields.io/badge/-React%20Router-CA4245?logo=react-router" alt="React Router" />
 <img src="https://img.shields.io/badge/javascript%20-%23323330.svg?&style=for-the-badge&logo=javascript&logoColor=%23F7DF1E" alt="javascript" />
-<img src="https://img.shields.io/badge/html5%20-%23E34F26.svg?&style=for-the-badge&logo=html5&logoColor=white" alt="html5"/>
-<img src="https://img.shields.io/badge/-ReactJs-61DAFB?logo=react" alt="React" />
-<img src="https://img.shields.io/badge/-React%20Router-CA4245?logo=react-router" alt="React Router" />
- 
+<img src="https://img.shields.io/badge/css3%20-%231572B6.svg?&style=for-the-badge&logo=css3&logoColor=white" alt="CSS3"/>
+<img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white" alt="Github" />
 
 ## Contributors
 <table>
