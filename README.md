@@ -1,7 +1,5 @@
 # Browse-A-Pup
 
-[View this application deployed on Heroku](https://browse-a-pup.herokuapp.com/)
-
 ## Overview
 
 Browse-A-Pup is an application created with React for the final project of Module 3 of the FE program. This application is targeted towards an audience that is considering adopting a new dog. In the beginning stage of this decision, it can be difficult to understand which breeds are out there to consider. Browse-A-Pup allows a easy, stress-free way to browse doggos that warm your heart. 
@@ -15,8 +13,11 @@ On the home page, the user is displayed with two different dogs. The user "keeps
 ### Mobile View 
 ![Mobile View](https://media.giphy.com/media/WQpWmK45tMbMXxXxU1/giphy.gif)
 
+## Deployment 
 
-## Set Up
+[View this application deployed on Heroku](https://browse-a-pup.herokuapp.com/)
+
+## Local Set Up
 
 Clone this repo down, and `cd` into it.
 
