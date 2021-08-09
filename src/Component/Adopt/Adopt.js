@@ -2,7 +2,10 @@ import React, { Component } from 'react';
 import PastDogs from '../PastDogs/PastDogs';
 import LovedDogs from '../LovedDogs/LovedDogs';
 import Dog from '../Dog/Dog';
+import ErrorHandling from '../ErrorHandling/ErrorHandling';
 import {Route, Switch} from 'react-router-dom';
+import checkForError from '../../util';
+import PropTypes from 'prop-types';
 import './Adopt.css';
 
 class Adopt extends Component {
@@ -12,23 +15,29 @@ class Adopt extends Component {
         allDogs: [],
         dogOne: [],
         dogTwo: [],
-        pastDogs: [] 
+        pastDogs: [],
+        isLoading: true,
+        errorWarning: '' 
       }
   }
 
   componentDidMount() {
     fetch('https://dog.ceo/api/breeds/image/random/50')
-      .then(response => response.json())
-      .then(data => {
+    .then(response => checkForError(response))
+    .then(data => {
         this.setState({allDogs: data.message})
         this.createDogObjects();
         this.assignBreed();
         this.assignID();
         this.assignDogsOneAndTwo();
-      })
+        this.setState({isLoading: false})
+    })
+    .catch(error => this.setState({errorWarning :  error , isLoading: false}))
+    
 
     
   }
+
 
   createDogObjects = () => {
       const dogObjects = this.state.allDogs.map(currentDog => {
@@ -45,6 +54,8 @@ class Adopt extends Component {
       })
       this.setState({allDogs: dogObjects})
       return dogObjects;
+
+
   }
 
 
@@ -143,12 +154,20 @@ class Adopt extends Component {
           exact path ='/'
           render={({match}) => {
             return (
+            <>  
               <div className="adopt-container" data-cy="adopt-container">
-                <button className="keep-button one" onClick={(event) => this.handleClickOne(event)} data-cy="keep-button-one">Keep</button>
-                <Dog className="dog one" id="dogOne" data-cy="dogOne" alt="dog one" dog={this.state.dogOne} handleLoveClick={this.handleLoveClick}/>
-                <button className="keep-button" data-cy="keep-button-two" onClick={(event) => this.handleClickTwo(event)}>Keep</button>
-                <Dog className="dog two" id="dogTwo" data-cy="dogTwo" alt="dog two" dog={this.state.dogTwo} handleLoveClick={this.handleLoveClick}/>
+                {!this.state.errorWarning && this.state.isLoading && <h2>Loading. One moment please...</h2>}
+                {!!this.state.errorWarning && !this.state.isLoading && <ErrorHandling errorWarning={this.state.errorWarning} />}
+                {!this.state.errorWarning && !this.state.isLoading && 
+                (<>
+                  <button className="keep-button one" onClick={(event) => this.handleClickOne(event)} data-cy="keep-button-one">Keep</button>
+                  <Dog className="dog one" id="dogOne" data-cy="dogOne" alt="dog one" dog={this.state.dogOne} handleLoveClick={this.handleLoveClick}/>
+                  <button className="keep-button" data-cy="keep-button-two" onClick={(event) => this.handleClickTwo(event)}>Keep</button>
+                  <Dog className="dog two" id="dogTwo" data-cy="dogTwo" alt="dog two" dog={this.state.dogTwo} handleLoveClick={this.handleLoveClick}/>
+                </>)
+                  }
               </div>
+            </>
             )   
             }}
           />
@@ -156,9 +175,15 @@ class Adopt extends Component {
           exact path='/past-dogs' 
           render={() => {
               return(
-                <article className="dog-container">
-                  <PastDogs pastDogs={this.state.pastDogs} isOnlyLoved="false" handleLoveClick={this.handleLoveClick}/>
-                </article>
+                <>
+                  {!this.state.errorWarning && this.state.isLoading && <h2>Loading. One moment please...</h2>}
+                  {!!this.state.errorWarning && !this.state.isLoading && <ErrorHandling errorWarning={this.state.errorWarning} />}
+                  {!this.state.errorWarning && !this.state.isLoading &&      
+                    (<article className="dog-container">
+                      <PastDogs pastDogs={this.state.pastDogs} isOnlyLoved="false" handleLoveClick={this.handleLoveClick}/>
+                    </article>)}
+                  </>
+            
               )
             }}
             / > 
@@ -166,16 +191,42 @@ class Adopt extends Component {
           exact path='/loved-dogs' 
           render={() => {
               return(
-                <article className="dog-container">
-                  <LovedDogs pastDogs={this.state.pastDogs} dogOne={this.state.dogOne} dogTwo={this.state.dogTwo} handleLoveClick={this.handleLoveClick}/>
-                </article>
+                <>
+                  {!this.state.errorWarning && this.state.isLoading && <h2>Loading. One moment please...</h2>}
+                  {!!this.state.errorWarning && !this.state.isLoading && <ErrorHandling errorWarning={this.state.errorWarning} />}
+                  {!this.state.errorWarning && !this.state.isLoading && 
+                    (<article className="dog-container">
+                      <LovedDogs pastDogs={this.state.pastDogs} handleLoveClick={this.handleLoveClick}/>
+                    </article>)}
+                  </>  
               )
             }}
             / > 
-        </Switch> 
+        <Route
+          render={() => (
+            <ErrorHandling errorWarning="Sorry that page does not exist" />
+          )}
+        />
+      </Switch> 
     )
   }
 }
 
 
 export default Adopt;
+
+ErrorHandling.propTypes = {
+  errorWarning: PropTypes.string.isRequired
+}
+
+Dog.propTypes = {
+  dog: PropTypes.object.isRequired
+}
+
+PastDogs.propTypes = {
+  pastDogs: PropTypes.array.isRequired
+}
+
+LovedDogs.propTypes = {
+  pastDogs: PropTypes.array.isRequired
+}

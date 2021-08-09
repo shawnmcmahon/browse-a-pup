@@ -25,7 +25,7 @@ describe('Adopt', () => {
 
   })
 
-  it('Should have unkept dogs appear in the past dogs view', () => {
+  it('Should have viewed dogs appear in the past dogs view', () => {
     cy.intercept('GET', 'https://dog.ceo/api/breeds/image/random/50', {
       fixture: 'dogs.json',
       statusCode: 200
@@ -52,9 +52,27 @@ describe('Adopt', () => {
       .should(($article) => {
         expect($article).to.have.length(2)
       })
-
-
   })
+
+  it('Should have dog removed from loved page if user unloves dog', () => {
+    cy.wait(1000)
+      .get('[data-cy="love-dog"]').first().click()
+      .get('[data-cy="loved-dogs-button"]').click()
+    cy.get('[data-cy="loved-dogs-container"]')
+      .find('article')
+      .should(($article) => {
+        expect($article).to.have.length(1)
+      })
+    cy.get('[data-cy="loved-dogs-button"]').click()
+    cy.get('[data-cy="love-dog"]').first().click()
+    cy.get('[data-cy="loved-dogs-container"]')
+      .find('article')
+      .should(($article) => {
+        expect($article).to.have.length(0)
+      })
+      
+  })
+
 
 
 })

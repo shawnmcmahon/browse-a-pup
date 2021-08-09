@@ -40,15 +40,6 @@ describe('App', () => {
     })
   })
 
-  it('Should not load the game if there is a 404 error', () => { 
-    cy.intercept('GET', 'https://dog.ceo/api/breeds/image/', {
-      statusCode: 404
-    })
-
-  })
-
-
-
 })
 
 

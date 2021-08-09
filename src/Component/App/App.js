@@ -4,26 +4,19 @@ import Header from '../Header/Header';
 import { BrowserRouter } from 'react-router-dom';
 import './App.css';
 
-class App extends Component {
-  constructor() {
-    super() 
-      this.state = {
-        allDogs: []
-      }
-    }
+const App = () => {
+
   
-  render() {
     return (
       <BrowserRouter>
         <>
           <Header />
           <div className="App">
-          <Adopt allDogs={this.state.allDogs}/>
+          <Adopt />
           </div>
         </>
       </BrowserRouter>
     );
-  }
 }
 
 export default App;

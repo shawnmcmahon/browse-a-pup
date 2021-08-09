@@ -1,5 +1,6 @@
 import React from 'react';
-import Dog from '../Dog/Dog'
+import Dog from '../Dog/Dog';
+import PropTypes from 'prop-types';
 import './PastDogs.css'
 
 const PastDogs = ({pastDogs, handleLoveClick}) => {
@@ -23,3 +24,7 @@ const PastDogs = ({pastDogs, handleLoveClick}) => {
 }
 
 export default PastDogs;
+
+Dog.propTypes = {
+  dog: PropTypes.object.isRequired
+}
