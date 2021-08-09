@@ -28,7 +28,6 @@ h2 {
   height: 50px;
   align-content: space-between;
   color: white;
-  /* margin: 0px 30px; */
   background-color: transparent;
   background-repeat: no-repeat;
   align-self: center;
@@ -66,15 +65,7 @@ h2 {
   background-repeat: no-repeat;
   width: 200px;
   height: 200px;
+  margin-left: 25px
 }
 
 
-
-@media screen and (max-width: 820px) {
-
-
-
-
-
-
-}
