@@ -23,3 +23,19 @@ h3, h4 {
   margin-top: 20px;
   width: 100%
 }
+
+@media screen and (max-width: 500px) {
+
+  .past-dogs-container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+    margin-top: 20px;
+    width: 100%
+  }
+
+
+
+}
+

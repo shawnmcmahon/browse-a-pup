@@ -6,6 +6,7 @@ import ErrorHandling from '../ErrorHandling/ErrorHandling';
 import {Route, Switch} from 'react-router-dom';
 import checkForError from '../../util';
 import PropTypes from 'prop-types';
+import fetchDogImages  from '../../apiCalls';
 import './Browse.css';
 
 class Browse extends Component {
@@ -22,8 +23,7 @@ class Browse extends Component {
   }
 
   componentDidMount() {
-    fetch('https://dog.ceo/api/breeds/image/random/50')
-    .then(response => checkForError(response))
+    fetchDogImages()
     .then(data => {
         this.setState({allDogs: data.message})
         this.createDogObjects();
@@ -186,10 +186,12 @@ class Browse extends Component {
                 {!!this.state.errorWarning && !this.state.isLoading && <ErrorHandling errorWarning={this.state.errorWarning} />}
                 {!this.state.errorWarning && !this.state.isLoading && 
                 (<>
+                  <h2>Browse A Pup</h2>
                   <button className="keep-button one" onClick={(event) => this.handleClickOne(event)} data-cy="keep-button-one">Keep</button>
                   <Dog className="dog one" id="dogOne" data-cy="dog-one" alt="dog one" dog={this.state.dogOne} handleLoveClick={this.handleLoveClick}/>
                   <button className="keep-button" data-cy="keep-button-two" onClick={(event) => this.handleClickTwo(event)}>Keep</button>
                   <Dog className="dog two" id="dogTwo" data-cy="dogTwo" alt="dog two" dog={this.state.dogTwo} handleLoveClick={this.handleLoveClick}/>
+                  <h2 className="logo"></h2>
                 </>)
                   }
               </div>

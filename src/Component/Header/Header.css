@@ -61,6 +61,13 @@ h2 {
   border-radius: 50%;
 }
 
+.logo {
+  background-image: url('../../assets/browse.png');
+  background-repeat: no-repeat;
+  width: 200px;
+  height: 200px;
+}
+
 
 
 @media screen and (max-width: 820px) {

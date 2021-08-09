@@ -22,8 +22,8 @@ const LovedDogs = ({pastDogs, handleLoveClick}) => {
   
   return (
     <>
-      <h2>Loved Dogs</h2>
-      {!allLovedDogs.length && <p>You haven't loved any dogs! Love Dogs to see them here. </p>}
+      <h2>Loved Pups</h2>
+      {!allLovedDogs.length && <p>You haven't loved any pups! Love pups to see them here. </p>}
       <section className="loved-dogs-container" data-cy="loved-dogs-container">
         {mappedLovedDogs}
       </section>

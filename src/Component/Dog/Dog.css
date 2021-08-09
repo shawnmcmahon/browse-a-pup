@@ -40,11 +40,13 @@ p {
   margin-right: 10px;
   margin-bottom: 10px;
   align-items: center;
+  border: 2px solid black;
 }
 
 .dog {
   width: 225px;
   height: 225px;
+  border: 2px solid black;
 }
 
 
