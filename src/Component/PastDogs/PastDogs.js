@@ -5,7 +5,7 @@ import './PastDogs.css'
 
 const PastDogs = ({pastDogs, handleLoveClick}) => {
 
-  const mappedPastDogs = pastDogs.map(currentDog => {
+  const mappedPastDogs = pastDogs.sort((a, b ) => { return b.roundsWon - a.roundsWon}).map(currentDog => {
     return (
         <Dog dog={currentDog} key={currentDog.key} handleLoveClick={handleLoveClick} />
     )
