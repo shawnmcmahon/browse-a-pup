@@ -4,7 +4,6 @@ import LovedDogs from '../LovedDogs/LovedDogs';
 import Dog from '../Dog/Dog';
 import ErrorHandling from '../ErrorHandling/ErrorHandling';
 import {Route, Switch} from 'react-router-dom';
-import checkForError from '../../util';
 import PropTypes from 'prop-types';
 import fetchDogImages  from '../../apiCalls';
 import './Browse.css';
@@ -136,15 +135,11 @@ class Browse extends Component {
   }
 
   checkIfEmptyAndRefill = () => {
-    console.log('all dogs', this.state.allDogs)
     if (this.state.allDogs.length === 2) {
       const allPastDogs = this.state.pastDogs; 
-      // console.log('pastDogs', allPastDogs)
       const sortedPastDogs = allPastDogs.sort(() => .5 - Math.random())
-      console.log('sorted dogs', sortedPastDogs)
       this.setState({allDogs: []})
       this.setState({allDogs: sortedPastDogs})
-      console.log('all dogs state', this.state.allDogs)
     }
   }
 
@@ -191,7 +186,7 @@ class Browse extends Component {
                   <Dog className="dog one" id="dogOne" data-cy="dog-one" alt="dog one" dog={this.state.dogOne} handleLoveClick={this.handleLoveClick}/>
                   <button className="keep-button" data-cy="keep-button-two" onClick={(event) => this.handleClickTwo(event)}>Keep</button>
                   <Dog className="dog two" id="dogTwo" data-cy="dogTwo" alt="dog two" dog={this.state.dogTwo} handleLoveClick={this.handleLoveClick}/>
-                  <h2 className="logo"></h2>
+                  <p className="logo"></p>
                 </>)
                   }
               </div>
@@ -243,6 +238,9 @@ class Browse extends Component {
 
 export default Browse;
 
+ErrorHandling.propTypes = {
+  errorWarning: PropTypes.any.isRequired
+}
 
 Dog.propTypes = {
   dog: PropTypes.object

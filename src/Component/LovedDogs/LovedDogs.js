@@ -7,12 +7,7 @@ import './LovedDogs.css';
 const LovedDogs = ({pastDogs, handleLoveClick}) => {
 
   const allDogs = [...pastDogs];
-
   const allLovedDogs = allDogs.filter(currentDog => currentDog.isLoved)
-
-
-
-
   const mappedLovedDogs = allLovedDogs.map(currentDog => {
       return (
           <Dog dog={currentDog} key={currentDog.image} handleLoveClick={handleLoveClick} />
