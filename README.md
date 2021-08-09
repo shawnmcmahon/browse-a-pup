@@ -6,7 +6,8 @@ Browse-A-Pup is an application created with React for the final project of Modul
 
 On the home page, the user is displayed with two different dogs. The user "keeps" which dog warms their heart and the opposite slot is replaced with a new pup. (The user only "keeps" the dog for the next round. No dogs seen in this application are available for adoption). If the user loves both dogs and has trouble deciding, the user can "love a dog". All loved dogs will appear on the loved dogs page. Stats from each round are recorded for each dog. Dogs with the most rounds won are sorted in the past dogs view. 
 
-### Screenshots
+### Preview
+![Application](https://media.giphy.com/media/tqJ3O3A4HMnKkgRkFD/giphy.gif)
 
 
 ### Responsive Design
