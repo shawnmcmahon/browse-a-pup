@@ -136,15 +136,11 @@ class Browse extends Component {
   }
 
   checkIfEmptyAndRefill = () => {
-    console.log('all dogs', this.state.allDogs)
     if (this.state.allDogs.length === 2) {
       const allPastDogs = this.state.pastDogs; 
-      // console.log('pastDogs', allPastDogs)
       const sortedPastDogs = allPastDogs.sort(() => .5 - Math.random())
-      console.log('sorted dogs', sortedPastDogs)
       this.setState({allDogs: []})
       this.setState({allDogs: sortedPastDogs})
-      console.log('all dogs state', this.state.allDogs)
     }
   }
 
