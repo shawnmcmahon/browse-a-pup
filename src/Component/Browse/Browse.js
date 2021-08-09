@@ -6,9 +6,9 @@ import ErrorHandling from '../ErrorHandling/ErrorHandling';
 import {Route, Switch} from 'react-router-dom';
 import checkForError from '../../util';
 import PropTypes from 'prop-types';
-import './Adopt.css';
+import './Browse.css';
 
-class Adopt extends Component {
+class Browse extends Component {
   constructor(props) {
     super(props) 
       this.state = {
@@ -100,9 +100,9 @@ class Adopt extends Component {
     const secondDog = this.state.dogTwo
     firstDog.roundsWon++;
     firstDog.roundTotal++;
-    firstDog.percentageWon = Math.floor((firstDog.roundsWon / firstDog.roundTotal * 100));
+    firstDog.percentageWon = (firstDog.roundsWon / firstDog.roundTotal * 100);
     secondDog.roundTotal++;
-    secondDog.percentageWon = secondDog.roundsWon / secondDog.roundTotal;
+    secondDog.percentageWon = (secondDog.roundsWon / secondDog.roundTotal * 100);
 
     this.setState({dogOne: firstDog, dogTwo: this.state.allDogs[1]});
     if (!this.state.pastDogs.includes(secondDog)) {
@@ -122,9 +122,9 @@ class Adopt extends Component {
 
     secondDog.roundsWon++;
     secondDog.roundTotal++;
-    secondDog.percentageWon = Math.floor((secondDog.roundsWon / secondDog.roundTotal * 100));
+    secondDog.percentageWon = (secondDog.roundsWon / secondDog.roundTotal * 100);
     firstDog.roundTotal++;
-    firstDog.percentageWon = firstDog.roundsWon / firstDog.roundTotal;
+    firstDog.percentageWon = (firstDog.roundsWon / firstDog.roundTotal * 100);
 
     this.setState({dogOne: this.state.allDogs[0], dogTwo: secondDog})
     if (!this.state.pastDogs.includes(firstDog)) {
@@ -239,7 +239,7 @@ class Adopt extends Component {
 }
 
 
-export default Adopt;
+export default Browse;
 
 
 Dog.propTypes = {

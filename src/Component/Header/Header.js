@@ -15,7 +15,7 @@ const Header = () => {
         <NavLink exact to="/"><button className="nav-button home" data-cy="home-button"></button></NavLink>
         <NavLink exact to="/loved-dogs"><button className="nav-button loved" data-cy="loved-dogs-button"></button></NavLink>
       </section>
-      <h2 className="title">Adopt-A-Doggo</h2>
+      <h2 className="title">Browse-A-Pup</h2>
     </header>
   )
 }

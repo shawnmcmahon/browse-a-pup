@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import Adopt from '../Adopt/Adopt';
+import React from 'react';
+import Browse from '../Browse/Browse.js';
 import Header from '../Header/Header';
 import { BrowserRouter } from 'react-router-dom';
 import './App.css';
@@ -12,7 +12,7 @@ const App = () => {
         <>
           <Header />
           <div className="App">
-          <Adopt />
+          <Browse />
           </div>
         </>
       </BrowserRouter>

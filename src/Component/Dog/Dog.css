@@ -1,39 +1,38 @@
-/* p {
-  margin: 3px;
-} */
+p {
+  align-self: flex-start;
+  margin-left: 10px;
+  margin: 5px;
+}
 
 
 .love-button-false {
   background-image: url('../../assets/heart_border_black.png');
+  background-repeat: no-repeat;
   display: flex;
   align-content: center;
   justify-self: center;
   background-color: transparent;
   width: 50px;
-  height: 50px;
+  height: 75px;
   border: none;
 }
 
 .love-button-true {
   background-image: url('../../assets/heart_filled_black.png');
+  background-repeat: no-repeat;
   display: flex;
   align-content: center;
   justify-self: center;
   background-color: transparent;
   width: 50px;
-  height: 50px;
+  height: 75px;
   border: none;
 }
 
 .dog-box {
   background-color: #BCC3F7;
   width: 225px;
-  height: 325px;
-  display: flex;
-  justify-content: center;
-
-  border-bottom-right-radius: 25px;
-  border-bottom-left-radius: 25px;
+  height: 400px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -41,6 +40,11 @@
   margin-right: 10px;
   margin-bottom: 10px;
   align-items: center;
+}
+
+.dog {
+  width: 225px;
+  height: 225px;
 }
 
 
