@@ -1,5 +1,13 @@
 describe('Adopt', () => {
   beforeEach(() => {
+    cy.intercept({
+      method: 'GET',
+      url: 'https://dog.ceo/api/breeds/image/random/50'
+    },
+    {
+      fixture: 'dogs.JSON',
+      statusCode: 200
+    })
     cy.visit('http://localhost:3000');
   });
 
@@ -70,7 +78,39 @@ describe('Adopt', () => {
       .should(($article) => {
         expect($article).to.have.length(0)
       })
-      
+  })
+
+  
+
+  it('Should have viewed dogs appear in the past dogs view', () => {
+    cy.intercept('GET', 'https://dog.ceo/api/breeds/image/random/3', {
+      fixture: 'dogs.json',
+      statusCode: 200
+    })
+    cy.wait(1000)
+    cy.get('[data-cy="keep-button-one"]').click()
+    cy.get('[data-cy="keep-button-two"]').click()
+    cy.get('[data-cy="keep-button-one"]').click()
+    cy.get('[data-cy="past-dogs-button"]').click()
+    cy.get('[data-cy="past-dogs-container"]')
+      .find('article')
+      .should(($article) => {
+        expect($article).to.have.length(3)
+      })
+  })
+
+  it('Should recycle past dogs if there are not more new dogs to show', () => {
+    cy.intercept({
+      method: 'GET',
+      url: 'https://dog.ceo/api/breeds/image/random/3'
+    },
+    {
+      fixture: 'dogs.JSON',
+      statusCode: 200
+    })
+
+
+
   })
 
 

@@ -94,6 +94,8 @@ class Adopt extends Component {
 
   handleClickOne = (event) => {
     event.preventDefault();
+    this.checkIfEmptyAndRefill()
+    this.checkForDuplicateDog();
     const firstDog = this.state.dogOne
     const secondDog = this.state.dogTwo
     firstDog.roundsWon++;
@@ -113,6 +115,8 @@ class Adopt extends Component {
 
   handleClickTwo = (event) => {
     event.preventDefault();
+    this.checkIfEmptyAndRefill();
+    this.checkForDuplicateDog();
     const firstDog = this.state.dogOne
     const secondDog = this.state.dogTwo
 
@@ -130,6 +134,27 @@ class Adopt extends Component {
     this.state.allDogs.splice(0, 1);
 
   }
+
+  checkIfEmptyAndRefill = () => {
+    console.log('all dogs', this.state.allDogs)
+    if (this.state.allDogs.length === 2) {
+      const allPastDogs = this.state.pastDogs; 
+      // console.log('pastDogs', allPastDogs)
+      const sortedPastDogs = allPastDogs.sort(() => .5 - Math.random())
+      console.log('sorted dogs', sortedPastDogs)
+      // this.setState({allDogs: sortedPastDogs})
+      console.log('all dogs state', this.state.allDogs)
+    }
+  }
+
+  checkForDuplicateDog = () => {
+    if (this.state.dogOne === this.state.dogTwo) {
+      const firstDog = this.state.dogOne
+      this.setState({dogOne: firstDog, dogTwo: this.state.allDogs[1]});
+    }
+  }
+
+
 
   handleLoveClick = (event, dog) => {
     const allPastDogs = this.state.pastDogs;
@@ -215,12 +240,9 @@ class Adopt extends Component {
 
 export default Adopt;
 
-ErrorHandling.propTypes = {
-  errorWarning: PropTypes.string.isRequired
-}
 
 Dog.propTypes = {
-  dog: PropTypes.object.isRequired
+  dog: PropTypes.object
 }
 
 PastDogs.propTypes = {
