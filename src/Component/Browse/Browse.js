@@ -238,6 +238,9 @@ class Browse extends Component {
 
 export default Browse;
 
+ErrorHandling.propTypes = {
+  errorWarning: PropTypes.any.isRequired
+}
 
 Dog.propTypes = {
   dog: PropTypes.object

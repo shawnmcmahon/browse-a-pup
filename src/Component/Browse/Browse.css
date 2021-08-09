@@ -24,39 +24,6 @@ h3, h4 {
   margin-bottom: 20px;
 }
 
-.red-container {
-    background-color: #F0D5F5;
-    width: 225px;
-    height: 325px;
-    display: flex;
-    justify-content: center;
-    border-top-left-radius: 25px;
-    border-top-right-radius: 25px;
-    border-bottom-right-radius: 25px;
-    border-bottom-left-radius: 25px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  
-}
-
-.blue-container {
-  background-color: #BCC3F7;
-  width: 225px;
-  height: 325px;
-  display: flex;
-  justify-content: center;
-  border-top-left-radius: 25px;
-  border-top-right-radius: 25px;
-  border-bottom-right-radius: 25px;
-  border-bottom-left-radius: 25px;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-
-}
-
-
 
 .keep-button {
   display: flex;
