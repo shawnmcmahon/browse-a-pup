@@ -54,22 +54,25 @@ describe('Adopt', () => {
       })
   })
 
-  it('Should see a 404 error when the user inputs any incorrect path', () => {
-    cy.intercept('GET', 'https://dog.ceo/api/breeds/image/random/50', {
-      statusCode: 404,
-      fixture: 'dogs.json'
-    })
-    cy.visit('http://localhost:3000/invalidpath')
-    cy.get('h2').should('contain', 'Error')
-    cy.get('p').should('contain', 'Error 404: Sorry that page does not exist')
-    cy.visit('http://localhost:3000/12?3!03zzz')
-    cy.get('h2').should('contain', 'Error')
-    cy.get('p').should('contain', 'Error 404: Sorry that page does not exist')
+  it('Should have dog removed from loved page if user unloves dog', () => {
+    cy.wait(1000)
+      .get('[data-cy="love-dog"]').first().click()
+      .get('[data-cy="loved-dogs-button"]').click()
+    cy.get('[data-cy="loved-dogs-container"]')
+      .find('article')
+      .should(($article) => {
+        expect($article).to.have.length(1)
+      })
+    cy.get('[data-cy="loved-dogs-button"]').click()
+    cy.get('[data-cy="love-dog"]').first().click()
+    cy.get('[data-cy="loved-dogs-container"]')
+      .find('article')
+      .should(($article) => {
+        expect($article).to.have.length(0)
+      })
+      
   })
 
-  it('Should see a 500 error if the api cannot be loaded', () => {
-    
-  })
 
 
 })

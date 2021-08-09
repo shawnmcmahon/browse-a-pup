@@ -1,11 +1,11 @@
 import React from 'react';
 
-const ErrorHandling = ({ errorMessage }) => {
-
+const ErrorHandling = ({ errorWarning }) => {
+  // console.log('error', errorWarning)
   return  (
     <>
       <h2>Error</h2>
-      <p> {errorMessage === "Failed to fetch" ? `Server Error Status Code 500: ${errorMessage}` : `Error 404: ${errorMessage}` } </p>
+      <p> {errorWarning  && `Something went wrong. Please try again.`} </p>
     </>
   )
 
