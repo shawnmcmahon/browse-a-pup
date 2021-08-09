@@ -14,13 +14,14 @@ describe('Adopt', () => {
 
   it('Should see the home page upon load' , () => {
     cy.get('div').should('have.class', 'adopt-container').should('be.visible')
+    cy.get('h2').should('contain', 'Browse A Pup')
     cy.get('[data-cy="dog-box"]')
       .first()
       .should('have.class', 'dog-box')
       .should('be.visible')
       .find('p')
       .should(($p) => {
-        expect($p).to.have.length(2)
+        expect($p).to.have.length(3)
       })
     cy.get('[data-cy="dog-box"]')
       .last()
@@ -28,7 +29,7 @@ describe('Adopt', () => {
       .should('be.visible')
       .find('p')
       .should(($p) => {
-        expect($p).to.have.length(2)
+        expect($p).to.have.length(3)
       })
 
   })
@@ -39,6 +40,7 @@ describe('Adopt', () => {
     cy.get('[data-cy="keep-button-two"]').click()
     cy.get('[data-cy="keep-button-one"]').click()
     cy.get('[data-cy="past-dogs-button"]').click()
+    cy.get('h2').should('contain', 'Past Pups')
     cy.get('[data-cy="past-dogs-container"]')
       .find('article')
       .should(($article) => {
@@ -51,6 +53,7 @@ describe('Adopt', () => {
       .get('[data-cy="love-dog"]').first().click()
       .get('[data-cy="love-dog"]').last().click()
       .get('[data-cy="loved-dogs-button').click()
+    cy.get('h2').should('contain', 'Loved Pups')
     cy.get('[data-cy="loved-dogs-container"]')
       .find('article')
       .should(($article) => {
@@ -91,7 +94,7 @@ describe('Adopt', () => {
       })
   })
 
-  it('Should recycle past dogs if there are not more new dogs to show without crashing', () => {
+  it.only('Should recycle past dogs if there are no more new dogs to show without crashing', () => {
     cy.wait(1000)
     cy.get('[data-cy="keep-button-one"]').click()
     cy.get('[data-cy="keep-button-one"]').click()
@@ -106,6 +109,11 @@ describe('Adopt', () => {
     cy.get('[data-cy="dog-image"]').first().should('be.visible')
     cy.get('[data-cy="dog-box"]').last().should('be.visible')
     cy.get('[data-cy="dog-image"]').last().should('be.visible')
+    cy.get('[data-cy="adopt-container"]')
+      .find('article')
+      .should(($article) => {
+        expect($article).to.have.length(2)
+      })
 
   })
 
