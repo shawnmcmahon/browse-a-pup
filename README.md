@@ -10,7 +10,8 @@ On the home page, the user is displayed with two different dogs. The user "keeps
 ![Application](https://media.giphy.com/media/tqJ3O3A4HMnKkgRkFD/giphy.gif)
 
 
-### Responsive Design
+### Mobile View 
+![Mobile View](https://media.giphy.com/media/WQpWmK45tMbMXxXxU1/giphy.gif)
 
 
 ## Set Up
