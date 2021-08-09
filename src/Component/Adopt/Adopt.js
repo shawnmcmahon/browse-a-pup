@@ -142,7 +142,8 @@ class Adopt extends Component {
       // console.log('pastDogs', allPastDogs)
       const sortedPastDogs = allPastDogs.sort(() => .5 - Math.random())
       console.log('sorted dogs', sortedPastDogs)
-      // this.setState({allDogs: sortedPastDogs})
+      this.setState({allDogs: []})
+      this.setState({allDogs: sortedPastDogs})
       console.log('all dogs state', this.state.allDogs)
     }
   }
@@ -186,7 +187,7 @@ class Adopt extends Component {
                 {!this.state.errorWarning && !this.state.isLoading && 
                 (<>
                   <button className="keep-button one" onClick={(event) => this.handleClickOne(event)} data-cy="keep-button-one">Keep</button>
-                  <Dog className="dog one" id="dogOne" data-cy="dogOne" alt="dog one" dog={this.state.dogOne} handleLoveClick={this.handleLoveClick}/>
+                  <Dog className="dog one" id="dogOne" data-cy="dog-one" alt="dog one" dog={this.state.dogOne} handleLoveClick={this.handleLoveClick}/>
                   <button className="keep-button" data-cy="keep-button-two" onClick={(event) => this.handleClickTwo(event)}>Keep</button>
                   <Dog className="dog two" id="dogTwo" data-cy="dogTwo" alt="dog two" dog={this.state.dogTwo} handleLoveClick={this.handleLoveClick}/>
                 </>)

@@ -34,10 +34,6 @@ describe('Adopt', () => {
   })
 
   it('Should have viewed dogs appear in the past dogs view', () => {
-    cy.intercept('GET', 'https://dog.ceo/api/breeds/image/random/50', {
-      fixture: 'dogs.json',
-      statusCode: 200
-    })
     cy.wait(1000)
     cy.get('[data-cy="keep-button-one"]').click()
     cy.get('[data-cy="keep-button-two"]').click()
@@ -83,10 +79,6 @@ describe('Adopt', () => {
   
 
   it('Should have viewed dogs appear in the past dogs view', () => {
-    cy.intercept('GET', 'https://dog.ceo/api/breeds/image/random/3', {
-      fixture: 'dogs.json',
-      statusCode: 200
-    })
     cy.wait(1000)
     cy.get('[data-cy="keep-button-one"]').click()
     cy.get('[data-cy="keep-button-two"]').click()
@@ -99,17 +91,21 @@ describe('Adopt', () => {
       })
   })
 
-  it('Should recycle past dogs if there are not more new dogs to show', () => {
-    cy.intercept({
-      method: 'GET',
-      url: 'https://dog.ceo/api/breeds/image/random/3'
-    },
-    {
-      fixture: 'dogs.JSON',
-      statusCode: 200
-    })
-
-
+  it('Should recycle past dogs if there are not more new dogs to show without crashing', () => {
+    cy.wait(1000)
+    cy.get('[data-cy="keep-button-one"]').click()
+    cy.get('[data-cy="keep-button-one"]').click()
+    cy.get('[data-cy="keep-button-one"]').click()
+    cy.get('[data-cy="keep-button-one"]').click()
+    cy.get('[data-cy="keep-button-one"]').click()
+    cy.get('[data-cy="keep-button-one"]').click()
+    cy.get('[data-cy="keep-button-one"]').click()
+    cy.get('[data-cy="keep-button-one"]').should('be.visible').and('contain', 'Keep')
+    cy.get('[data-cy="keep-button-two"]').should('be.visible').and('contain', 'Keep')
+    cy.get('[data-cy="dog-box"]').first().should('be.visible')
+    cy.get('[data-cy="dog-image"]').first().should('be.visible')
+    cy.get('[data-cy="dog-box"]').last().should('be.visible')
+    cy.get('[data-cy="dog-image"]').last().should('be.visible')
 
   })
 
