@@ -4,9 +4,7 @@
 
 Browse-A-Pup is an application created with React for the final project of Module 3 of the FE program. This application is targeted towards an audience that is considering adopting a new dog. In the beginning stage of this decision, it can be difficult to understand which breeds are out there to consider. Browse-A-Pup allows a easy, stress-free way to browse doggos that warm your heart. 
 
-On the home page, the user is displayed with two different dogs. The user "keeps" which dog warms their heart and the opposite slot is replaced with a new pup. (The user only "keeps" the dog for the next round. No dogs seen in this application are available for adoption). If the user loves both dogs and has trouble deciding, the user can "love a dog". All loved dogs will appear on the loved dogs page. 
-
-Stats from each round are recorded for each dog. Dogs with the most rounds won are sorted in the past dogs view. 
+On the home page, the user is displayed with two different dogs. The user "keeps" which dog warms their heart and the opposite slot is replaced with a new pup. (The user only "keeps" the dog for the next round. No dogs seen in this application are available for adoption). If the user loves both dogs and has trouble deciding, the user can "love a dog". All loved dogs will appear on the loved dogs page. Stats from each round are recorded for each dog. Dogs with the most rounds won are sorted in the past dogs view. 
 
 ### Screenshots
 
