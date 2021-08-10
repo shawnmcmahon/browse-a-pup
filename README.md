@@ -28,9 +28,9 @@ Run `npm start`
 ## Learning Goals 
 
 1. Demonstrate knowledge gained over the course of Mod 3 of React, Router, AJAX Javascript, and End-to-End testing. 
-2. Create personas and user stories to describe target audience (Available on Github projects board) 
-3. Display data from a third party API 
-4. Application deployment on Heroku
+2. Create personas and user stories to describe target audience (available on Github projects board). 
+3. Display data from a third party API. 
+4. Application deployment on Heroku.
 
 ## Future Extensions
 
